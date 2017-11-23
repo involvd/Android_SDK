@@ -25,5 +25,9 @@ public class VersionUtils {
     public static boolean isOreo() {
         return Build.VERSION.SDK_INT >= 26;
     }
+
+    public static boolean isJellyBeanMR2() {
+        return Build.VERSION.SDK_INT >= 18;
+    }
     
 }
