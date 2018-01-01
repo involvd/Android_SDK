@@ -98,7 +98,7 @@ public abstract class BaseMvpActivity<V extends BaseMvpView, P extends BaseMvpPr
     }
 
     protected int getLayoutResId() {
-        return R.layout.activity_main;
+        return R.layout.rr_activity_main;
     }
 
     public void showProgressDialog(int errorResId) {

@@ -88,7 +88,7 @@ public abstract class BaseListFragment<V extends BaseListView<T>, P extends Base
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.fragment_base_list;
+        return R.layout.rr_fragment_base_list;
     }
 
     public void showProgress() {

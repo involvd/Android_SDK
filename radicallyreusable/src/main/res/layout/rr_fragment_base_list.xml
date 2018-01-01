@@ -5,6 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <include layout="@layout/view_search_list" />
+    <include layout="@layout/rr_view_search_list" />
 
 </android.support.v4.widget.SwipeRefreshLayout>

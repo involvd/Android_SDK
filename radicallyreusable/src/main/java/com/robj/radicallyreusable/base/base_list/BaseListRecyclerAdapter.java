@@ -26,7 +26,7 @@ public abstract class BaseListRecyclerAdapter<O, VH extends RecyclerView.ViewHol
     @Override
     public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if(TYPE_SPINNER == viewType) {
-            View v = inflate(R.layout.row_spinner, parent);
+            View v = inflate(R.layout.rr_row_spinner, parent);
             EmptyViewHolder vh = new EmptyViewHolder(v);
             return vh;
         }

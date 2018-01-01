@@ -50,7 +50,7 @@ public class SnackBarView extends LinearLayout implements View.OnClickListener {
     }
 
     private void init() {
-        LayoutInflater.from(getContext()).inflate(R.layout.view_snack_bar, this, true);
+        LayoutInflater.from(getContext()).inflate(R.layout.rr_view_snack_bar, this, true);
         snackBarText = findViewById(R.id.snack_bar_text);
         snackBarIgnore = findViewById(R.id.snack_bar_ignore);
         snackBarEnable = findViewById(R.id.snack_bar_enable);

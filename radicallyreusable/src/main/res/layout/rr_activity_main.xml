@@ -10,10 +10,10 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <include layout="@layout/view_toolbar" />
+        <include layout="@layout/rr_view_toolbar" />
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/layout_drawer" />
+    <include layout="@layout/rr_layout_drawer" />
 
 </android.support.design.widget.CoordinatorLayout>
