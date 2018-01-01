@@ -37,14 +37,13 @@ public class LaunchUtils {
         return i;
     }
 
-    public static Intent getShareIntent(Context context, Uri uri, String body) {
+    public static Intent getShareIntent(Context context, Uri uri, String body, String mimeType) {
         Intent i = new Intent();
         i.setAction(Intent.ACTION_SEND);
         if(uri != null)
             i.putExtra(Intent.EXTRA_STREAM, uri);
         if(!TextUtils.isEmpty(body))
             i.putExtra(Intent.EXTRA_TEXT, body);
-        String mimeType = MediaUtils.getMimeType(context, uri);
         if(!TextUtils.isEmpty(mimeType))
             i.setType(mimeType);
         return i;
