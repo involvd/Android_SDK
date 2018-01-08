@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
@@ -26,13 +27,24 @@ public abstract class BaseMvpActivity<V extends BaseMvpView, P extends BaseMvpPr
 
     private BaseMvpFragment currentFragment;
     private ProgressDialog progressDialog;
+    private DrawerLayout drawerLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResId());
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        drawerLayout = (DrawerLayout) findViewById(com.robj.radicallyreusable.R.id.drawer_layout);
+        disableNavDrawer(); //Default
         setSupportActionBar(toolbar);
+    }
+
+    private void disableNavDrawer() {
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
+
+    public void enableNavDrawer() {
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
     }
 
     protected void showHomeAsUp() {
