@@ -57,32 +57,36 @@ public abstract class BaseListFragment<V extends BaseListView<T>, P extends Base
 
     private void initList() {
         adapter = createAdapter();
-        final LinearLayoutManager layoutManager = getLayoutManager();
+        RecyclerView.LayoutManager layoutManager = getLayoutManager();
         list.setLayoutManager(layoutManager);
         list.setAdapter(adapter);
-        list.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if(hasMoreToLoad && dy >= 0) { //Check for scroll down
-                    int visibleItemCount = layoutManager.getChildCount();
-                    int totalItemCount = layoutManager.getItemCount();
-                    int pastVisibleItems = layoutManager.findFirstVisibleItemPosition();
-                    if((visibleItemCount + pastVisibleItems) >= totalItemCount && onScrollToLoadListener != null) {
-                        hasMoreToLoad = false;
-                        onScrollToLoadListener.onLoadMore();
-                        Log.d(TAG, "Scroll to load more triggered..");
-                    }
+        if(layoutManager instanceof LinearLayoutManager) {
+            LinearLayoutManager linearLayoutManager = (LinearLayoutManager) layoutManager;
+            list.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
                 }
-                super.onScrolled(recyclerView, dx, dy);
-            }
-        });
+
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    if (hasMoreToLoad && dy >= 0) { //Check for scroll down
+                        int visibleItemCount = linearLayoutManager.getChildCount();
+                        int totalItemCount = linearLayoutManager.getItemCount();
+                        int pastVisibleItems = linearLayoutManager.findFirstVisibleItemPosition();
+                        if ((visibleItemCount + pastVisibleItems) >= totalItemCount && onScrollToLoadListener != null) {
+                            hasMoreToLoad = false;
+                            onScrollToLoadListener.onLoadMore();
+                            Log.d(TAG, "Scroll to load more triggered..");
+                        }
+                    }
+                    super.onScrolled(recyclerView, dx, dy);
+                }
+            });
+        }
     }
 
-    protected LinearLayoutManager getLayoutManager() {
+    protected RecyclerView.LayoutManager getLayoutManager() {
         return new LinearLayoutManager(getActivity());
     }
 
@@ -175,6 +179,9 @@ public abstract class BaseListFragment<V extends BaseListView<T>, P extends Base
     public void setOnScrollToLoadListener(OnScrollToLoadListener onScrollToLoadListener) {
         this.onScrollToLoadListener = onScrollToLoadListener;
     }
+
+    @Override
+    public void onRefresh() { }
 
     protected RecyclerView getList() {
         return list;
