@@ -53,6 +53,10 @@ public abstract class BaseSearchAdapter<T extends Searchable, VH extends Recycle
         allObjects.clear();
     }
 
+    protected ArrayList<T> getAllItems() {
+        return allObjects;
+    }
+
     public void allowSearchInside(boolean allowSearchInside) {
         this.allowSearchInside = allowSearchInside;
     }
