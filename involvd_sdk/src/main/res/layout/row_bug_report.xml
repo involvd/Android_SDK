@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <data>
+        <variable name="viewModel" type="com.robj.involvd.data.viewmodels.BugReportViewModel" />
+        <import type="android.support.v4.content.ContextCompat" />
+        <import type="android.view.View" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        app:cardCornerRadius="4dp" >
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:gravity="center_vertical"
+            android:background="?attr/selectableItemBackground" >
+
+            <ImageView
+                android:id="@+id/voteUpBtn"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_up"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/voteCount" />
+
+            <TextView
+                android:id="@+id/voteCount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{String.valueOf(viewModel.voteCount)}"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:gravity="center_horizontal"
+                app:layout_constraintLeft_toLeftOf="@+id/voteUpBtn"
+                app:layout_constraintRight_toRightOf="@+id/voteUpBtn"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="0" />
+
+            <ImageView
+                android:id="@+id/voteDownBtn"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_down"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/voteCount" />
+
+            <!--<com.robj.involvd.components.RoundedImageView-->
+                <!--android:id="@+id/icon"-->
+                <!--android:layout_width="@dimen/app_list_icon_size"-->
+                <!--android:layout_height="@dimen/app_list_icon_size"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:src="@{ ContextCompat.getDrawable(context, viewModel.getDisplayIcon()) }"-->
+                <!--app:layout_constraintTop_toTopOf="parent"-->
+                <!--app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--tools:src="@drawable/ic_bug" />-->
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textStyle="bold"
+                android:text="@{viewModel.title}"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                app:layout_constraintLeft_toRightOf="@+id/voteCount"
+                tools:text="Title" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{viewModel.description}"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                app:layout_constraintLeft_toLeftOf="@id/name"
+                app:layout_constraintTop_toBottomOf="@+id/name"
+                tools:text="Description" />
+
+            <TextView
+                android:id="@+id/followerCount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{String.valueOf(viewModel.getFollowerCount())}"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:drawableLeft="@drawable/wrap_watching"
+                android:gravity="center_vertical"
+                app:layout_constraintLeft_toLeftOf="@id/name"
+                app:layout_constraintTop_toBottomOf="@+id/description"
+                tools:text="0" />
+
+            <TextView
+                android:id="@+id/upVoteCount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{String.valueOf(viewModel.upvotes)}"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:drawableLeft="@drawable/wrap_thumbs_up"
+                android:gravity="center_vertical"
+                app:layout_constraintLeft_toRightOf="@+id/followerCount"
+                app:layout_constraintTop_toTopOf="@+id/followerCount"
+                tools:text="0" />
+
+            <TextView
+                android:id="@+id/downVoteCount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{String.valueOf(viewModel.downvotes)}"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:drawableLeft="@drawable/wrap_thumbs_down"
+                android:gravity="center_vertical"
+                app:layout_constraintLeft_toRightOf="@+id/upVoteCount"
+                app:layout_constraintTop_toTopOf="@+id/followerCount"
+                tools:text="0" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{viewModel.status.labelResId}"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:gravity="center_vertical|right"
+                android:textStyle="italic"
+                app:layout_constraintLeft_toRightOf="@+id/downVoteCount"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="Status" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</layout>

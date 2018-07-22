@@ -3,13 +3,12 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="disableWrapperSourceDistributionNotification" value="true" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/radicallyreusable" />
+            <option value="$PROJECT_DIR$/involvd_sdk" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../Can'tTalk.iml" filepath="$PROJECT_DIR$/../Can'tTalk.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../app/app.iml" filepath="$PROJECT_DIR$/../app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../notificationhelperlibrary/notificationhelperlibrary.iml" filepath="$PROJECT_DIR$/../notificationhelperlibrary/notificationhelperlibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/radicallyreusable.iml" filepath="$PROJECT_DIR$/radicallyreusable.iml" />
-      <module fileurl="file://$PROJECT_DIR$/radicallyreusable/radicallyreusable-radicallyreusable.iml" filepath="$PROJECT_DIR$/radicallyreusable/radicallyreusable-radicallyreusable.iml" />
+      <module fileurl="file://$PROJECT_DIR$/involvd_sdk/involvd_sdk.iml" filepath="$PROJECT_DIR$/involvd_sdk/involvd_sdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sdk.iml" filepath="$PROJECT_DIR$/sdk.iml" />
     </modules>
   </component>
 </project>
