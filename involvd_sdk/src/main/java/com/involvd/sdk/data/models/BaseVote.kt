@@ -1,4 +1,4 @@
-package com.robj.involvd.data.models
+package com.involvd.sdk.data.models
 
 import android.support.annotation.NonNull
 import com.google.firebase.firestore.Exclude

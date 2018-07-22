@@ -1,8 +1,8 @@
-package com.robj.involvd.data.viewmodels
+package com.involvd.sdk.data.viewmodels
 
 import com.google.firebase.firestore.Exclude
-import com.robj.involvd.data.models.Attachment
-import com.robj.involvd.data.models.BaseReport
+import com.involvd.sdk.data.models.Attachment
+import com.involvd.sdk.data.models.BaseReport
 import com.robj.radicallyreusable.base.Searchable
 
 class BaseReportViewModel : BaseReport(), Searchable {

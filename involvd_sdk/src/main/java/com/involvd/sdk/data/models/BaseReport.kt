@@ -1,6 +1,7 @@
-package com.robj.involvd.data.models
+package com.involvd.sdk.data.models
 
 import android.support.annotation.NonNull
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.Exclude
 import com.google.firebase.firestore.PropertyName
@@ -12,7 +13,7 @@ import java.util.*
 /**
  * Created by jj on 24/01/18.
  */
-abstract class BaseReport : FirebaseDbUtils.DatabaseValueProvider {
+open class BaseReport : FirebaseDbUtils.DatabaseValueProvider {
 
     @NonNull
     private lateinit var id: String
@@ -26,32 +27,27 @@ abstract class BaseReport : FirebaseDbUtils.DatabaseValueProvider {
     lateinit var submittedBy: String
     @Exclude @get:Exclude @set:Exclude
     var status: Status = Status.PENDING_APPROVAL
-    @Exclude @get:Exclude @set:Exclude
+    @Exclude @get:Exclude
     var followerList: MutableList<String> = ArrayList()
     var appVersionsAffected: MutableList<Int> = ArrayList()
 
-    /** Firebase  */
-
-    var _followerList: List<String>?
-        @Exclude
-        @PropertyName("followerList")
-        get() {
-            return null
-        }
-        @PropertyName("followerList")
-        set(list) {
-            if (list == null || list.isEmpty())
-                return
-            followerList.addAll(list)
-        }
-
-    var _status: String
-        @PropertyName("status")
-        get() = Converters.reportStatusToString(status)
-        @PropertyName("status")
-        set(status) { this.status = Converters.stringToReportStatus(status) }
+    @JsonProperty("status")
+    open fun get_Status() : String {
+        return Converters.reportStatusToString(status)
+    }
+    @JsonProperty("status")
+    open fun set_Status(status: String) {
+        this.status = Converters.stringToReportStatus(status)
+    }
 
     constructor()
+
+    constructor(packageName: String, title: String, description: String) {
+        this.packageName = packageName
+        this.title = title
+        this.description = description
+    }
+
 
     override fun getId(): String {
         return id

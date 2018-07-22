@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools" >
 
     <data>
-        <variable name="viewModel" type="com.robj.involvd.data.viewmodels.BaseReportViewModel" />
+        <variable name="viewModel" type="com.involvd.sdk.data.viewmodels.BaseReportViewModel" />
         <import type="android.support.v4.content.ContextCompat" />
         <import type="android.view.View" />
     </data>
