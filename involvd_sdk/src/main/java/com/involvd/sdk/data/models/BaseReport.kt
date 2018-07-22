@@ -1,6 +1,8 @@
 package com.involvd.sdk.data.models
 
 import android.support.annotation.NonNull
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.Exclude
@@ -8,12 +10,18 @@ import com.google.firebase.firestore.PropertyName
 import com.involvd.R
 import com.involvd.sdk.data.room.Converters
 import com.robj.firestore_utils.FirebaseDbUtils
+import com.robj.radicallyreusable.base.Searchable
 import java.util.*
 
 /**
  * Created by jj on 24/01/18.
  */
-open class BaseReport : FirebaseDbUtils.DatabaseValueProvider {
+@JsonIgnoreProperties(ignoreUnknown = true)
+open class BaseReport : FirebaseDbUtils.DatabaseValueProvider, Searchable {
+
+    override fun getName(): String {
+        return title
+    }
 
     @NonNull
     private lateinit var id: String
@@ -23,6 +31,7 @@ open class BaseReport : FirebaseDbUtils.DatabaseValueProvider {
     var upvotes: Int = 0
     var downvotes: Int = 0
     var deployedInBuild: String? = null
+    @JsonIgnore
     var submittedTimestamp: Timestamp = Timestamp(Date())
     lateinit var submittedBy: String
     @Exclude @get:Exclude @set:Exclude

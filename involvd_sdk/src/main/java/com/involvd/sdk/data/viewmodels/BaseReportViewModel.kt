@@ -1,10 +1,12 @@
 package com.involvd.sdk.data.viewmodels
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.google.firebase.firestore.Exclude
 import com.involvd.sdk.data.models.Attachment
 import com.involvd.sdk.data.models.BaseReport
 import com.robj.radicallyreusable.base.Searchable
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 class BaseReportViewModel : BaseReport(), Searchable {
 
     @Exclude
