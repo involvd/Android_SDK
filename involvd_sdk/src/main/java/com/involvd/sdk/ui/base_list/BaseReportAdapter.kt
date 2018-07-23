@@ -18,7 +18,7 @@ abstract class BaseReportAdapter<T : BaseReport>(context: Context) : BaseSearchA
 
     override fun createVH(parent: ViewGroup?, viewType: Int): BaseViewHolder? {
         return when(viewType) {
-            TYPE_APP -> createBugReportViewHolder(parent)
+            TYPE_REPORT -> createBugReportViewHolder(parent)
             else -> null
         }
     }
@@ -46,7 +46,7 @@ abstract class BaseReportAdapter<T : BaseReport>(context: Context) : BaseSearchA
 
     override fun onBindViewHolder(viewHolder: BaseViewHolder?, position: Int, viewType: Int) {
         when(viewType) {
-            TYPE_APP -> {
+            TYPE_REPORT -> {
                 val viewModel = getItemAtPosition(position) as T
 
                 (viewHolder as BaseReportViewHolder).setViewModel(object : BaseReportViewModel {
@@ -93,20 +93,20 @@ abstract class BaseReportAdapter<T : BaseReport>(context: Context) : BaseSearchA
     override fun getViewType(position: Int): Int {
         val o = getItemAtPosition(position)
         if(o is BaseReport)
-            return TYPE_APP
+            return TYPE_REPORT
         else
             return super.getViewType(position)
     }
 
     companion object {
-        const val TYPE_APP = 0
+        const val TYPE_REPORT = 0
     }
 
-    fun getIsFollowing(viewModel: T) : Boolean {
+    open fun getIsFollowing(viewModel: T) : Boolean {
         return false
     }
 
-    fun getIsVotedOn(viewModel: T): Boolean {
+    open fun getIsVotedOn(viewModel: T): Boolean {
         return false
     }
 
