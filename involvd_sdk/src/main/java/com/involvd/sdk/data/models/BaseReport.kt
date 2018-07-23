@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.Exclude
-import com.google.firebase.firestore.PropertyName
 import com.involvd.R
 import com.involvd.sdk.data.room.Converters
+import com.involvd.sdk.utils.SdkUtils
 import com.robj.firestore_utils.FirebaseDbUtils
 import com.robj.radicallyreusable.base.Searchable
 import java.util.*
@@ -34,6 +34,7 @@ open class BaseReport : FirebaseDbUtils.DatabaseValueProvider, Searchable {
     @JsonIgnore
     var submittedTimestamp: Timestamp = Timestamp(Date())
     lateinit var submittedBy: String
+    var submittedByEmail: String? = null
     @Exclude @get:Exclude @set:Exclude
     var status: Status = Status.PENDING_APPROVAL
     @Exclude @get:Exclude
@@ -57,6 +58,10 @@ open class BaseReport : FirebaseDbUtils.DatabaseValueProvider, Searchable {
         this.description = description
     }
 
+    @Exclude
+    fun setUserEmail(email: String) {
+        this.submittedByEmail = SdkUtils.hashString("MD5", email)
+    }
 
     override fun getId(): String {
         return id

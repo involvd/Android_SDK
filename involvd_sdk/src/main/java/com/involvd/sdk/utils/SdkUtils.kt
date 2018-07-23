@@ -99,7 +99,7 @@ open class SdkUtils {
             return str.toString()
         }
 
-        private fun hashString(type: String, input: String): String {
+        open fun hashString(type: String, input: String): String {
             val HEX_CHARS = "0123456789ABCDEF"
             val bytes = MessageDigest
                     .getInstance(type)
