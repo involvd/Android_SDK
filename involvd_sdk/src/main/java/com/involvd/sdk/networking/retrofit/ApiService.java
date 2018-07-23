@@ -17,6 +17,6 @@ public interface ApiService {
     /** Places **/
 
     @GET("/bugs")
-    Flowable<List<BaseReport>> getBugs(@Query("id") String appId, @Query("status") String status, @Query("page") String previousBugId);
+    Flowable<List<BaseReport>> getBugs(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("status") String status, @Query("page") String previousBugId);
 
 }
