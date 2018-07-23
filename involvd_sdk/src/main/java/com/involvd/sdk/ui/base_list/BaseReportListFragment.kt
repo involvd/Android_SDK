@@ -11,7 +11,7 @@ abstract class BaseReportListFragment<V: BaseReportListView, P: BaseReportListPr
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getPresenter().loadReports(activity!!, activity!!.packageName)
+        getPresenter().loadReports(activity!!)
     }
 
     override fun addOrReplaceResult(result: Searchable?) {

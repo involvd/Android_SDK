@@ -1,0 +1,18 @@
+<resources>
+
+    <string name="status_pending">Pending approval</string>
+    <string name="status_accepted">Accepted</string>
+    <string name="status_in_progress">In Progress</string>
+    <string name="status_testing">Testing</string>
+    <string name="status_beta">In beta</string>
+    <string name="status_complete">Complete</string>
+
+    <string name="error_network_exception">Unable to connect at this time, are you connected to the internet?</string>
+    <string name="error_network_timeout_exception">It\'s taking too long to connect to the server, please try again later.</string>
+    <string name="error_unknown">Some unknown error occurred, if this continues contact the developer</string>
+    <string name="empty_bug_reports">No bug reports found</string>
+    <string name="progress_bug_reports">Loading bug reports</string>
+
+    <string name="error_network_error">Unable to connect, do you have an internet connection?</string>
+
+</resources>

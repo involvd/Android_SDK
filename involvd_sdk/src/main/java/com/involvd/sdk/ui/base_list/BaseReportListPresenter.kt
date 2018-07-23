@@ -7,11 +7,9 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-abstract class BaseReportListPresenter<T, V: BaseReportListView> : BaseMvpPresenter<V>() {
+abstract class BaseReportListPresenter<T, V: BaseReportListView>(val appId: String) : BaseMvpPresenter<V>() {
 
-    lateinit var appId: String
-
-    fun loadReports(context: Context, appId: String) {
+    fun loadReports(context: Context) {
         view?.showProgress()
         getReports(context)
                 //TODO: Get bugs we're following
