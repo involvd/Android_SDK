@@ -32,7 +32,7 @@ public class ApiClient {
         builder.addInterceptor(new NetworkCheckIntercepter(context));
         if (BuildConfig.DEBUG) {
             final HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-            builder.addInterceptor(httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC)); //Use log level of BODY if you NEEED the body, otherwise use BASIC
+            builder.addInterceptor(httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)); //Use log level of BODY if you NEEED the body, otherwise use BASIC
         }
         return getDeepThoughtService(BASE_API_URL, builder.build());
     }

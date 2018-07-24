@@ -9,8 +9,8 @@ import io.reactivex.Observable
 open class CreateFeatureRequestPresenter(val context: Context) : BaseReportPresenter<BaseReport, CreateFeatureRequestView>() {
 
     override fun writeReport(baseReport: BaseReport): Observable<BaseReport> {
-        val userEmail = "some@email2.com"
-        baseReport.submittedByEmail = userEmail
+        val userIdentifier = "some@email2.com"
+        baseReport.submittedBy = "__" + SdkUtils.hashString("MD5", userIdentifier)
         baseReport.upvotes = 1
         val apiKey = SdkUtils.getApiKeyForPackage(context, context.packageName)
         val sigHash = SdkUtils.getCertificateSHA1Fingerprint(context, context.packageName)
@@ -18,7 +18,9 @@ open class CreateFeatureRequestPresenter(val context: Context) : BaseReportPrese
     }
 
     override fun createReport(title: String, description: String): BaseReport {
-        return BaseReport(appId, title, description)
+        val baseReport = BaseReport(appId, title, description)
+        baseReport.setId("") //Populated server side
+        return baseReport
     }
 
 }

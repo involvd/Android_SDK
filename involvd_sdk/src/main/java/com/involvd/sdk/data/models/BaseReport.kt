@@ -9,7 +9,6 @@ import com.google.firebase.firestore.Exclude
 import com.google.firebase.firestore.PropertyName
 import com.involvd.R
 import com.involvd.sdk.data.room.Converters
-import com.involvd.sdk.utils.SdkUtils
 import com.robj.firestore_utils.FirebaseDbUtils
 import com.robj.radicallyreusable.base.Searchable
 import java.util.*
@@ -34,9 +33,9 @@ open class BaseReport : FirebaseDbUtils.DatabaseValueProvider, Searchable {
     var deployedInBuild: String? = null
     @JsonIgnore
     var submittedTimestamp: Timestamp = Timestamp(Date())
-    lateinit var submittedBy: String
-    var submittedByEmail: String? = null
+    var submittedBy: String? = null
     @Exclude @get:Exclude @set:Exclude
+    @JsonIgnore
     var status: Status = Status.PENDING_APPROVAL
     @Exclude @get:Exclude
     var followerList: MutableList<String> = ArrayList()
@@ -58,11 +57,6 @@ open class BaseReport : FirebaseDbUtils.DatabaseValueProvider, Searchable {
         this.title = title
         this.description = description
         this.upvotes = 1
-    }
-
-    @Exclude
-    fun setUserEmail(email: String) {
-        this.submittedByEmail = SdkUtils.hashString("MD5", email)
     }
 
     @JsonProperty("id")
