@@ -6,6 +6,8 @@ import android.support.annotation.VisibleForTesting;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.involvd.BuildConfig;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -28,7 +30,9 @@ public class ApiClient {
     }
 
     private static ApiService getApiService(Context context) {
-        final OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        final OkHttpClient.Builder builder = new OkHttpClient.Builder()
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30,TimeUnit.SECONDS);
         builder.addInterceptor(new NetworkCheckIntercepter(context));
         if (BuildConfig.DEBUG) {
             final HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
