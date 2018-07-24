@@ -83,7 +83,7 @@ open class SdkUtils {
             val publicKey = md.digest(c!!.getEncoded())
             val hexString = byte2HexFormatted(publicKey)
 
-            return return hashString("MD5", hexString)
+            return hashString("MD5", hexString)
         }
 
         private fun byte2HexFormatted(arr: ByteArray): String {

@@ -15,7 +15,8 @@ class BugReportListPresenter(appId: String) : BaseReportListPresenter<BaseReport
 
     override fun getReports(context: Context): Observable<MutableList<BaseReport>> {
         val apiKey = SdkUtils.getApiKeyForPackage(context, context.packageName)
-        return ApiClient.getInstance(context).getBugs(context.packageName, apiKey, null, null).toObservable() //TODO: Params
+        val sigHash = SdkUtils.getCertificateSHA1Fingerprint(context, context.packageName)
+        return ApiClient.getInstance(context).getBugs(context.packageName, apiKey, sigHash, null, null).toObservable() //TODO: Params
     }
 
 }

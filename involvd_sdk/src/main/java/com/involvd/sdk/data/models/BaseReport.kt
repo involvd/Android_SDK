@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.Exclude
+import com.google.firebase.firestore.PropertyName
 import com.involvd.R
 import com.involvd.sdk.data.room.Converters
 import com.involvd.sdk.utils.SdkUtils
@@ -56,6 +57,7 @@ open class BaseReport : FirebaseDbUtils.DatabaseValueProvider, Searchable {
         this.packageName = packageName
         this.title = title
         this.description = description
+        this.upvotes = 1
     }
 
     @Exclude
@@ -63,10 +65,14 @@ open class BaseReport : FirebaseDbUtils.DatabaseValueProvider, Searchable {
         this.submittedByEmail = SdkUtils.hashString("MD5", email)
     }
 
+    @JsonProperty("id")
+    @PropertyName("id")
     override fun getId(): String {
         return id
     }
 
+    @JsonProperty("id")
+    @PropertyName("id")
     fun setId(id: String) {
         this.id = id
     }
@@ -80,5 +86,9 @@ open class BaseReport : FirebaseDbUtils.DatabaseValueProvider, Searchable {
     enum class Status(val labelResId: Int) {
         PENDING_APPROVAL(R.string.status_pending), ACCEPTED(R.string.status_accepted), IN_PROGRESS(R.string.status_in_progress),
         TESTING(R.string.status_testing), IN_BETA(R.string.status_beta), COMPLETE(R.string.status_complete)
+    }
+
+    companion object {
+        const val FIELD_ID = "id"
     }
 }

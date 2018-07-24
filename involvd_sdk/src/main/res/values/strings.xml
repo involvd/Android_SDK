@@ -15,4 +15,8 @@
 
     <string name="error_network_error">Unable to connect, do you have an internet connection?</string>
 
+    <string name="progress_submitting_bug_report">Submitting..</string>
+    <string name="create_bug_success">Thanks for your bug report</string>
+    <string name="create_feature_request_success">Thanks for your feature request</string>
+
 </resources>

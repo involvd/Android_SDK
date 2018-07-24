@@ -5,6 +5,7 @@ import com.involvd.sdk.data.models.BaseReport;
 import java.util.List;
 
 import io.reactivex.Flowable;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -17,6 +18,13 @@ public interface ApiService {
     /** Places **/
 
     @GET("/bugs")
-    Flowable<List<BaseReport>> getBugs(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("status") String status, @Query("page") String previousBugId);
+    Flowable<List<BaseReport>> getBugs(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("sig") String sig,
+                                                        @Query("status") String status, @Query("page") String previousBugId);
+
+    @GET("/createBugReport")
+    Flowable<BaseReport> createBugReport(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("sig") String sig, @Body BaseReport baseReport);
+
+    @GET("/createFeatureRequest")
+    Flowable<BaseReport> createFeatureRequest(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("sig") String sig, @Body BaseReport baseReport);
 
 }
