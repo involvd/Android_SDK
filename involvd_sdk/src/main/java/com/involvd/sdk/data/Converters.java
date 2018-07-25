@@ -1,4 +1,4 @@
-package com.involvd.sdk.data.room;
+package com.involvd.sdk.data;
 
 import android.text.TextUtils;
 

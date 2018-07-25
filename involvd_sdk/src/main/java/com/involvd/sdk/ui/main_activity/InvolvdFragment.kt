@@ -12,7 +12,7 @@ import com.robj.radicallyreusable.base.base_list.BaseListFragment
 import com.robj.radicallyreusable.base.mvp.fragment.BaseMvpFragment
 import com.robj.radicallyreusable.base.mvp.fragment.BaseMvpPresenter
 import com.robj.radicallyreusable.base.mvp.fragment.BaseMvpView
-import kotlinx.android.synthetic.main.fragment_involvd.*
+import kotlinx.android.synthetic.main.involvd_fragment_main.*
 
 class InvolvdFragment : BaseMvpFragment<BaseMvpView, BaseMvpPresenter<BaseMvpView>>() {
 
@@ -60,7 +60,7 @@ class InvolvdFragment : BaseMvpFragment<BaseMvpView, BaseMvpPresenter<BaseMvpVie
     }
 
     override fun getLayoutResId(): Int {
-        return R.layout.fragment_involvd
+        return R.layout.involvd_fragment_main
     }
 
     override fun createPresenter(): BaseMvpPresenter<BaseMvpView> {

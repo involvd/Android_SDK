@@ -1,25 +1,36 @@
 <resources>
 
+    <string name="title_involvd">Involvd</string>
+    <string name="title_create_bug_report">Raise a bug</string>
+    <string name="title_create_feature_request">Raise feature request</string>
+    <string name="title_bug_reports">Bug reports</string>
+    <string name="title_feature_req_list">Feature requests</string>
+
     <string name="status_pending">Pending approval</string>
     <string name="status_accepted">Accepted</string>
     <string name="status_in_progress">In Progress</string>
     <string name="status_testing">Testing</string>
     <string name="status_beta">In beta</string>
-    <string name="status_complete">Complete</string>
+    <string name="status_released">Released</string>
+    <string name="status_fixed">FIXED</string>
+    <string name="status_investigating">Investigating</string>
+    <string name="status_fixing">Fixing</string>
+    <string name="status_will_fix">Will fix</string>
+    <string name="status_wont_fix">Won\'t fix</string>
 
     <string name="error_network_exception">Unable to connect at this time, are you connected to the internet?</string>
     <string name="error_network_timeout_exception">It\'s taking too long to connect to the server, please try again later.</string>
     <string name="error_unknown">Some unknown error occurred, if this continues contact the developer</string>
-    <string name="empty_bug_reports">No bug reports found</string>
-    <string name="progress_bug_reports">Loading bug reports</string>
-    <string name="empty_feature_requests">No feature requests to display</string>
-
     <string name="error_network_error">Unable to connect, do you have an internet connection?</string>
 
-    <string name="progress_submitting_bug_report">Submitting..</string>
     <string name="create_bug_success">Thanks for your bug report</string>
     <string name="create_feature_request_success">Thanks for your feature request</string>
+    <string name="empty_bug_reports">No bug reports found</string>
+    <string name="empty_feature_requests">No feature requests to display</string>
     <string name="progress_feature_requests">Loading feature requests..</string>
+    <string name="progress_bug_reports">Loading bug reports</string>
+
+    <string name="progress_submitting_bug_report">Submitting..</string>
 
     <string name="tab_bug_reports">Bug Reports</string>
     <string name="tab_feature_requests">Feature Requests</string>

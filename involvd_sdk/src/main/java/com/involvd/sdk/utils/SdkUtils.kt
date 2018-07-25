@@ -6,8 +6,6 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.text.TextUtils
 import java.io.ByteArrayInputStream
-import java.math.BigInteger
-import java.nio.charset.Charset
 import java.security.MessageDigest
 import java.security.cert.CertificateException
 import java.security.cert.CertificateFactory

@@ -1,14 +1,14 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
-    package="com.involvd">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.involvd">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application>
-        <activity android:name=".sdk.ui.main_activity.InvolvdActivity" />
-        <activity android:name=".sdk.ui.create_bug_report.CreateBugReportActivity" />
-        <activity android:name=".sdk.ui.create_feature_request.CreateFeatureRequestActivity" />
+        <activity android:name=".sdk.ui.main_activity.InvolvdActivity" android:label="@string/title_involvd" />
+        <activity android:name=".sdk.ui.create_bug_report.CreateBugReportActivity" android:label="@string/title_create_bug_report" />
+        <activity android:name=".sdk.ui.create_feature_request.CreateFeatureRequestActivity" android:label="@string/title_create_feature_request" />
+        <activity android:name=".sdk.ui.bug_list.BugReportListActivity" android:label="@string/title_bug_reports" />
+        <activity android:name=".sdk.ui.feature_request_list.FeatureRequestListActivity" android:label="@string/title_feature_req_list" />
     </application>
 
 </manifest>

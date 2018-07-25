@@ -3,7 +3,7 @@ package com.involvd.sdk.data.models
 import android.support.annotation.NonNull
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.involvd.sdk.data.room.Converters
+import com.involvd.sdk.data.Converters
 
 /**
  * Created by jj on 05/02/18.

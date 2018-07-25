@@ -11,7 +11,7 @@ import com.involvd.BuildConfig
 import com.involvd.R
 import com.involvd.sdk.data.models.BaseReport
 import com.robj.radicallyreusable.base.mvp.fragment.BaseMvpFragment
-import kotlinx.android.synthetic.main.fragment_create_report.*
+import kotlinx.android.synthetic.main.involvd_fragment_create_report.*
 
 abstract class BaseReportFragment<T : BaseReport, V : BaseReportView, P : BaseReportPresenter<T, V>> : BaseMvpFragment<V, P>(), BaseReportView {
 
@@ -63,7 +63,7 @@ abstract class BaseReportFragment<T : BaseReport, V : BaseReportView, P : BaseRe
     }
 
     override fun getLayoutResId(): Int {
-        return R.layout.fragment_create_report
+        return R.layout.involvd_fragment_create_report
     }
 
 }
