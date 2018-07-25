@@ -49,18 +49,19 @@ ext {
 
 dependencies {
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
-    implementation "com.android.support:design:$supportLibraryVersion"
     implementation "com.android.support:recyclerview-v7:$supportLibraryVersion"
-//    implementation "com.android.support:support-compat:$supportLibraryVersion"
     implementation "com.android.support:support-vector-drawable:$supportLibraryVersion"
     implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     implementation 'com.github.iamrobj:Radically-Reusable:0.4'
-    implementation 'com.github.iamrobj:FirestoreUtils:44ab17c653'
     //Retrofit
     compile 'com.squareup.okhttp3:okhttp:3.9.1'
     compile 'com.squareup.okhttp3:logging-interceptor:3.9.1'
     compile 'com.squareup.retrofit2:retrofit:2.4.0'
     compile 'com.squareup.retrofit2:converter-jackson:2.4.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }

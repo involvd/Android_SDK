@@ -1,7 +1,10 @@
 package com.involvd.sdk.data.room;
 
+import android.text.TextUtils;
+
+import com.involvd.sdk.data.models.AppVersion;
 import com.involvd.sdk.data.models.Attachment;
-import com.involvd.sdk.data.models.BaseReport;
+import com.involvd.sdk.data.models.Status;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -11,12 +14,12 @@ import org.jetbrains.annotations.NotNull;
 
 public class Converters {
 
-    public static String reportStatusToString(BaseReport.Status status) {
+    public static String reportStatusToString(Status status) {
         return status.name().toLowerCase();
     }
 
-    public static BaseReport.Status stringToReportStatus(String status) {
-        return BaseReport.Status.valueOf(status.toUpperCase());
+    public static Status stringToReportStatus(String status) {
+        return Status.valueOf(status.toUpperCase());
     }
 
     public static String attachmentTypeToString(@NotNull Attachment.Type type) {

@@ -1,40 +1,30 @@
 package com.involvd.sdk.data.models
 
 import android.support.annotation.NonNull
-import com.google.firebase.firestore.PropertyName
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.involvd.sdk.data.room.Converters
 
 /**
  * Created by jj on 05/02/18.
  */
-class Attachment {
+class Attachment : BaseAttachment {
 
     @NonNull
-    lateinit var id: String
-    @NonNull
-    lateinit var appId: String
-    @NonNull
-    lateinit var name: String
-    @NonNull
-    lateinit var url: String
-    @NonNull
+    @JsonIgnore
     var type: Type = Type.UNKNOWN
-    var isPublic: Boolean = false
 
-    constructor()
+    constructor() : super()
 
     var _type: String
-        @PropertyName("type")
+        @JsonProperty("type")
         get() = Converters.attachmentTypeToString(type)
-        @PropertyName("type")
+        @JsonProperty("type")
         set(type) { this.type = Converters.stringToAttachmentType(type) }
 
     companion object {
-        const val FIELD_ID = "id"
-        const val FIELD_APP_ID = "appId"
+        const val FIELD_ID = BaseAttachment.FIELD_ID
+        const val FIELD_APP_ID = BaseAttachment.FIELD_APP_ID
     }
 
-    enum class Type {
-        IMAGE, VIDEO, TXT, UNKNOWN
-    }
 }

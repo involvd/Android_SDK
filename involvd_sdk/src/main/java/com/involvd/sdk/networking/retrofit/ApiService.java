@@ -1,6 +1,8 @@
 package com.involvd.sdk.networking.retrofit;
 
 import com.involvd.sdk.data.models.BaseReport;
+import com.involvd.sdk.data.models.BugReport;
+import com.involvd.sdk.data.models.FeatureRequest;
 
 import java.util.List;
 
@@ -19,13 +21,13 @@ public interface ApiService {
     /** Places **/
 
     @GET("/bugs")
-    Flowable<List<BaseReport>> getBugs(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("sig") String sig,
-                                                        @Query("status") String status, @Query("page") String previousBugId);
+    Flowable<List<BugReport>> getBugs(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("sig") String sig,
+                                      @Query("status") String status, @Query("page") String previousBugId);
 
     @POST("/createBugReport")
-    Flowable<BaseReport> createBugReport(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("sig") String sig, @Body BaseReport baseReport);
+    Flowable<BugReport> createBugReport(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("sig") String sig, @Body BaseReport baseReport);
 
     @POST("/createFeatureRequest")
-    Flowable<BaseReport> createFeatureRequest(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("sig") String sig, @Body BaseReport baseReport);
+    Flowable<FeatureRequest> createFeatureRequest(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("sig") String sig, @Body BaseReport baseReport);
 
 }

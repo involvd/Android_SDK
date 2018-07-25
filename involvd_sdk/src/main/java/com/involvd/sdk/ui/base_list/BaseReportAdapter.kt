@@ -79,7 +79,7 @@ abstract class BaseReportAdapter<T : BaseReport>(context: Context) : BaseSearchA
                     }
 
                     override fun getStatusLabelResId(): Int {
-                        return viewModel.status.labelResId
+                        return this@BaseReportAdapter.getStatusLabelResId(viewModel)
                     }
 
                     override fun getName(): String {
@@ -89,6 +89,8 @@ abstract class BaseReportAdapter<T : BaseReport>(context: Context) : BaseSearchA
             }
         }
     }
+
+    abstract fun getStatusLabelResId(viewModel: T): Int
 
     override fun getViewType(position: Int): Int {
         val o = getItemAtPosition(position)

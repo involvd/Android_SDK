@@ -5,9 +5,10 @@ import android.view.View
 import com.involvd.BuildConfig
 import com.involvd.R
 import com.involvd.sdk.data.models.BaseReport
+import com.involvd.sdk.data.models.BugReport
 import com.robj.involvd.ui.app_list.BaseReportListFragment
 
-class BugReportListFragment : BaseReportListFragment<BugReportListView, BugReportListPresenter, BaseReport, BugReportAdapter>(), BugReportListView {
+class BugReportListFragment : BaseReportListFragment<BugReportListView, BugReportListPresenter, BugReport, BugReportAdapter>(), BugReportListView {
 
     override fun getSearchString(): String {
         return getString(R.string.progress_bug_reports)
