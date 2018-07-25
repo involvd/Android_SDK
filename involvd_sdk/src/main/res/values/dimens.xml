@@ -1,2 +1,3 @@
 <resources>
+    <dimen name="left_drawable">20dp</dimen>
 </resources>

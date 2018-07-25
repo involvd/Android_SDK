@@ -24,6 +24,10 @@ public interface ApiService {
     Flowable<List<BugReport>> getBugs(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("sig") String sig,
                                       @Query("status") String status, @Query("page") String previousBugId);
 
+    @GET("/featureRequests")
+    Flowable<List<FeatureRequest>> getFeatureRequests(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("sig") String sig,
+                                      @Query("status") String status, @Query("page") String previousFeatureReqId);
+
     @POST("/createBugReport")
     Flowable<BugReport> createBugReport(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("sig") String sig, @Body BaseReport baseReport);
 

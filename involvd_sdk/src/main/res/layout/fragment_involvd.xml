@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/view_pager_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:visibility="gone"
+        app:tabBackground="?attr/colorPrimary"
+        app:tabTextColor="#99ffffff"
+        app:tabSelectedTextColor="#ffffff"
+        tools:layout_height="40dp"
+        tools:visibility="visible" />
+
+    <com.robj.radicallyreusable.base.components.NonSwipeableViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/view_pager_tabs"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_create"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/ic_add" />
+
+</android.support.constraint.ConstraintLayout>

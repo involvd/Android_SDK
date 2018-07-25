@@ -1,7 +1,9 @@
 <resources>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Involvd_SDK_Icon_Theme" parent="Theme.AppCompat.Light" >
+        <item name="miniIconColor">#66000000</item>
+    </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <attr name="miniIconColor" format="color" />
 
 </resources>

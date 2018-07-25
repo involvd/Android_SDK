@@ -19,4 +19,7 @@
     <string name="create_bug_success">Thanks for your bug report</string>
     <string name="create_feature_request_success">Thanks for your feature request</string>
 
+    <string name="tab_bug_reports">Bug Reports</string>
+    <string name="tab_feature_requests">Feature Requests</string>
+
 </resources>

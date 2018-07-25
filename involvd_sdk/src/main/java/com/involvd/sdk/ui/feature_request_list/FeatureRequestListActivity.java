@@ -1,13 +1,12 @@
-package com.involvd.sdk.ui.create_bug_report;
+package com.involvd.sdk.ui.feature_request_list;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.involvd.sdk.ui.BaseMvpActivity;
+import com.involvd.sdk.ui.bug_list.FeatureRequestListFragment;
 
-public class CreateBugReportActivity extends BaseMvpActivity {
+public class FeatureRequestListActivity extends BaseMvpActivity {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -18,7 +17,7 @@ public class CreateBugReportActivity extends BaseMvpActivity {
 
     @Override
     protected String getFragmentName() {
-        return CreateBugReportFragment.class.getName();
+        return FeatureRequestListFragment.class.getName();
     }
 
 }
