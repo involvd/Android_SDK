@@ -25,6 +25,11 @@ open class BugReport : BaseReport {
         this.status = status
     }
 
+    @JsonIgnore
+    override fun getName(): String {
+        return title
+    }
+
     constructor()
 
     constructor(packageName: String, title: String, description: String) : super(packageName, title, description)

@@ -1,6 +1,7 @@
 package com.involvd.sdk.data.models
 
 import android.support.annotation.NonNull
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.robj.radicallyreusable.base.Searchable
@@ -11,10 +12,6 @@ import java.util.*
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 abstract class BaseReport : Searchable {
-
-    override fun getName(): String {
-        return title
-    }
 
     @NonNull
     private lateinit var id: String
