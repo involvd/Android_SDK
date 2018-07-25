@@ -19,6 +19,7 @@
     <string name="progress_submitting_bug_report">Submitting..</string>
     <string name="create_bug_success">Thanks for your bug report</string>
     <string name="create_feature_request_success">Thanks for your feature request</string>
+    <string name="progress_feature_requests">Loading feature requests..</string>
 
     <string name="tab_bug_reports">Bug Reports</string>
     <string name="tab_feature_requests">Feature Requests</string>

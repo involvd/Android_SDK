@@ -11,7 +11,7 @@ import com.robj.involvd.ui.app_list.BaseReportListFragment
 class FeatureRequestListFragment : BaseReportListFragment<FeatureRequestListView, FeatureRequestListPresenter, FeatureRequest, FeatureRequestAdapter>(), FeatureRequestListView {
 
     override fun getSearchString(): String {
-        return getString(R.string.progress_bug_reports)
+        return getString(R.string.progress_feature_requests)
     }
 
     override fun createAdapter(): FeatureRequestAdapter {

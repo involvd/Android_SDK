@@ -5,9 +5,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <application android:allowBackup="true" android:label="@string/app_name"
-        android:supportsRtl="true">
-
+    <application>
+        <activity android:name=".sdk.ui.main_activity.InvolvdActivity" />
+        <activity android:name=".sdk.ui.create_bug_report.CreateBugReportActivity" />
+        <activity android:name=".sdk.ui.create_feature_request.CreateFeatureRequestActivity" />
     </application>
 
 </manifest>
