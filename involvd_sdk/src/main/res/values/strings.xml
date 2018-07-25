@@ -34,5 +34,7 @@
 
     <string name="tab_bug_reports">Bug Reports</string>
     <string name="tab_feature_requests">Feature Requests</string>
+    <string name="hint_bug_title">Write a brief title..</string>
+    <string name="hint_bug_text">Write the details of your issue..</string>
 
 </resources>
