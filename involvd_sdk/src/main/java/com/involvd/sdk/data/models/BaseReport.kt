@@ -55,5 +55,6 @@ abstract class BaseReport : Searchable {
 
     companion object {
         const val FIELD_ID = "id"
+        const val FIELD_APP_ID = "packageName"
     }
 }
