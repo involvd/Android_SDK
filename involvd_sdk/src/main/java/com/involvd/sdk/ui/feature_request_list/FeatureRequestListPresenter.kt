@@ -14,6 +14,10 @@ import io.reactivex.schedulers.Schedulers
 
 class FeatureRequestListPresenter(appId: String) : BaseReportListPresenter<FeatureRequest, FeatureRequestListView>(appId) {
 
+    override fun getEmptyResId(): Int {
+        return R.string.empty_feature_requests
+    }
+
     override fun getReports(context: Context): Observable<MutableList<FeatureRequest>> {
         val apiKey = SdkUtils.getApiKeyForPackage(context, context.packageName)
         val sigHash = SdkUtils.getCertificateSHA1Fingerprint(context, context.packageName)

@@ -29,7 +29,7 @@ public class AppPagerAdapter extends FragmentPagerAdapter {
         this.context = context;
     }
 
-    public Context getContext() {
+    protected Context getContext() {
         return context;
     }
 

@@ -22,13 +22,15 @@ abstract class BaseReportListPresenter<T: BaseReport, V: BaseReportListView>(val
                     if(!it.isEmpty())
                         view?.addResults(it)
                     else
-                        view?.showError(R.string.empty_bug_reports)
+                        view?.showError(getEmptyResId())
                 }, {
                     it.printStackTrace()
                     view?.hideProgress()
                     view?.showError(R.string.error_unknown) //TODO
                 })
     }
+
+    abstract fun getEmptyResId(): Int
 
     abstract fun getReports(context: Context) : Observable<MutableList<T>>
 

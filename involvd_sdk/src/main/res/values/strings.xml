@@ -12,6 +12,7 @@
     <string name="error_unknown">Some unknown error occurred, if this continues contact the developer</string>
     <string name="empty_bug_reports">No bug reports found</string>
     <string name="progress_bug_reports">Loading bug reports</string>
+    <string name="empty_feature_requests">No feature requests to display</string>
 
     <string name="error_network_error">Unable to connect, do you have an internet connection?</string>
 
