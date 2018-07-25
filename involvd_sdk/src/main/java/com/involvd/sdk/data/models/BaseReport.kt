@@ -50,6 +50,9 @@ abstract class BaseReport : Searchable {
         return super.equals(other)
     }
 
+    @JsonIgnore
+    abstract override fun getName(): String
+
     companion object {
         const val FIELD_ID = "id"
         const val FIELD_APP_ID = "packageName"
