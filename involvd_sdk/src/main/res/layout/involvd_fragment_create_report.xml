@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="2"
+            android:background="@drawable/et_background"
             android:textAppearance="?android:textAppearanceLarge"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -33,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:lines="7"
+            android:background="@drawable/et_background"
             android:textAppearance="?android:textAppearanceMedium" />
 
     </android.support.design.widget.TextInputLayout>
