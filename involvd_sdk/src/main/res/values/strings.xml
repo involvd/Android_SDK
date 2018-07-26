@@ -34,7 +34,14 @@
 
     <string name="tab_bug_reports">Bug Reports</string>
     <string name="tab_feature_requests">Feature Requests</string>
+
     <string name="hint_bug_title">Write a brief title..</string>
     <string name="hint_bug_text">Write the details of your issue..</string>
+
+    <string name="dialog_req_email">Get notified?</string>
+    <string name="dialog_req_email_bug_msg">Enter your email if you\'d like to be notified on the progress of this bug ticket</string>
+    <string name="hint_email">Enter your email address..</string>
+    <string name="skip">Skip</string>
+    <string name="done">Done</string>
 
 </resources>

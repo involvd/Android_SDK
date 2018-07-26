@@ -3,17 +3,12 @@ package com.involvd.sdk.ui.create_bug_report
 import android.content.Context
 import com.involvd.sdk.data.models.BugReport
 import com.involvd.sdk.networking.retrofit.ApiClient
-import com.involvd.sdk.utils.SdkUtils
 import io.reactivex.Observable
 
-open class CreateBugReportPresenter(val context: Context) : BaseReportPresenter<BugReport, CreateBugReportView>() {
+open class CreateBugReportPresenter(context: Context) : BaseCreatePresenter<BugReport, CreateBugReportView>(context) {
 
-    override fun writeReport(bugReport: BugReport): Observable<BugReport> {
-        val userIdentifier = "some@email.com"
-        bugReport.submittedBy = "__" + SdkUtils.hashString("MD5", userIdentifier)
-        val apiKey = SdkUtils.getApiKeyForPackage(context, context.packageName)
-        val sigHash = SdkUtils.getCertificateSHA1Fingerprint(context, context.packageName)
-        return ApiClient.getInstance(context).createBugReport(context.packageName, apiKey, sigHash, bugReport)
+    override fun getApiCall(apiKey: String?, sigHash: String?, report: BugReport): Observable<BugReport> {
+        return ApiClient.getInstance(context).createBugReport(context.packageName, apiKey, sigHash, report)
                 .toObservable()
     }
 

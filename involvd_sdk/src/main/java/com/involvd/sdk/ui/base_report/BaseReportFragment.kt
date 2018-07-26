@@ -55,7 +55,14 @@ abstract class BaseReportFragment<T : BaseReport, V : BaseReportView, P : BaseRe
                 checkIsReadyToSubmit()
             }
         })
-        fab_submit.setOnClickListener { getPresenter().submitBugReport(title.text.toString().trim(),description.text.toString().trim()) }
+        fab_submit.setOnClickListener {
+            if(canSubmit())
+                getPresenter().submitBugReport(title.text.toString().trim(),description.text.toString().trim())
+        }
+    }
+
+    protected open fun canSubmit(): Boolean {
+        return true
     }
 
     private fun checkIsReadyToSubmit() {
