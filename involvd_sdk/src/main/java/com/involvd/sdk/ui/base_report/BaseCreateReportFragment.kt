@@ -24,6 +24,15 @@ abstract open class BaseCreateReportFragment<T : BaseReport, V : BaseReportView,
             getPresenter().userIdentifier = arguments!!.getString(USER_ID)
     }
 
+    override fun onSubmittedSuccess(reportId: String) {
+        AlertDialog.Builder(activity!!)
+                .setTitle(getSuccessResId())
+                .setMessage(R.string.dialog_create_success)
+                .setPositiveButton(android.R.string.ok) { _, _ -> finishWithSuccess(reportId)}
+                .setCancelable(false)
+                .show()
+    }
+
     /**
      * @userIdentifier null show dialog
      * @userIdentifier "" dialog shown & rejected

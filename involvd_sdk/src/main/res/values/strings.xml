@@ -32,7 +32,7 @@
 
     <string name="progress_submitting_bug_report">Submitting..</string>
 
-    <string name="tab_bug_reports">Bug Reports</string>
+    <string name="tab_bug_reports">Known Bugs</string>
     <string name="tab_feature_requests">Feature Requests</string>
 
     <string name="hint_bug_title">Write a brief title..</string>
@@ -45,5 +45,6 @@
     <string name="skip">Skip</string>
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
+    <string name="dialog_create_success">Your submission will be visible in the list as soon as it\'s approved by the developer.</string>
 
 </resources>

@@ -32,6 +32,10 @@ abstract class BaseReportFragment<T : BaseReport, V : BaseReportView, P : BaseRe
 
     override fun onSubmittedSuccess(reportId: String) {
         showToast(getSuccessResId())
+        finishWithSuccess(reportId)
+    }
+
+    protected fun finishWithSuccess(reportId: String) {
         val i = Intent()
         i.putExtra(BaseReport.FIELD_ID, reportId)
         activity?.setResult(Activity.RESULT_OK, i)
