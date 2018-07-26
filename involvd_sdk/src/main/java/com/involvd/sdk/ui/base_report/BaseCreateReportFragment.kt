@@ -1,11 +1,13 @@
 package com.involvd.sdk.ui.base_report
 
 import android.content.DialogInterface
+import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Patterns
+import android.view.View
 import com.involvd.R
 import com.involvd.sdk.data.models.BaseReport
 import com.involvd.sdk.ui.create_bug_report.BaseCreatePresenter
@@ -15,6 +17,12 @@ import kotlinx.android.synthetic.main.dialog_edittext.view.*
 import kotlinx.android.synthetic.main.involvd_fragment_create_report.*
 
 abstract open class BaseCreateReportFragment<T : BaseReport, V : BaseReportView, P : BaseCreatePresenter<T, V>> :  BaseReportFragment<T, V, P>() {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if(arguments?.containsKey(USER_ID) == true)
+            getPresenter().userIdentifier = arguments!!.getString(USER_ID)
+    }
 
     /**
      * @userIdentifier null show dialog
@@ -50,6 +58,10 @@ abstract open class BaseCreateReportFragment<T : BaseReport, V : BaseReportView,
         } else if(TextUtils.isEmpty(getPresenter().userIdentifier))
             getPresenter().userIdentifier = null
         return true
+    }
+
+    companion object {
+        const val USER_ID = "userIdentifier"
     }
 
 }
