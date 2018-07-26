@@ -1,3 +1,4 @@
 <resources>
     <dimen name="left_drawable">20dp</dimen>
+    <dimen name="min_dialog_width">400dp</dimen>
 </resources>
