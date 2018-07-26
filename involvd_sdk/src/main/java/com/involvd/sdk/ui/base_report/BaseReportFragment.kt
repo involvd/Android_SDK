@@ -7,7 +7,6 @@ import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.View
-import com.involvd.BuildConfig
 import com.involvd.R
 import com.involvd.sdk.data.models.BaseReport
 import com.robj.radicallyreusable.base.mvp.fragment.BaseMvpFragment
@@ -18,16 +17,22 @@ abstract class BaseReportFragment<T : BaseReport, V : BaseReportView, P : BaseRe
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val appId = getAppId()
-        if(appId != null) {
+        val packageName = getPackageName()
+        if(appId != null && packageName != null) {
             initListeners();
             getPresenter().appId = appId
+            getPresenter().packageName = packageName
             fab_submit.isEnabled = false
         }
         //TODO: Else??
     }
 
     open fun getAppId(): String? {
-        return BuildConfig.APPLICATION_ID
+        return activity!!.packageName
+    }
+
+    open fun getPackageName(): String? {
+        return activity!!.packageName
     }
 
     override fun onSubmittedSuccess(reportId: String) {
@@ -61,7 +66,7 @@ abstract class BaseReportFragment<T : BaseReport, V : BaseReportView, P : BaseRe
         })
         fab_submit.setOnClickListener {
             if(canSubmit())
-                getPresenter().submitBugReport(title.text.toString().trim(),description.text.toString().trim())
+                getPresenter().submitBugReport(activity!!, title.text.toString().trim(),description.text.toString().trim())
         }
     }
 

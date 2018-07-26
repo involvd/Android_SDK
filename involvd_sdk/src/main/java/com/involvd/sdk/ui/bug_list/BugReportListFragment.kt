@@ -20,7 +20,7 @@ class BugReportListFragment : BaseReportListFragment<BugReportListView, BugRepor
     }
 
     override fun createPresenter(): BugReportListPresenter {
-        return BugReportListPresenter(BuildConfig.APPLICATION_ID)
+        return BugReportListPresenter(activity!!.packageName)
     }
 
 }

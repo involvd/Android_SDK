@@ -1,9 +1,11 @@
 package com.involvd.sdk.data.models
 
+import android.os.Build
 import android.support.annotation.NonNull
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.involvd.BuildConfig
 import com.robj.radicallyreusable.base.Searchable
 import java.util.*
 
@@ -24,6 +26,7 @@ abstract class BaseReport : Searchable {
     var submittedBy: String? = null
     var followerList: MutableList<String> = ArrayList()
     var appVersionsAffected: MutableList<AppVersion> = ArrayList()
+    var appDevicesAffected: MutableList<Device> = ArrayList()
 
     constructor()
 
@@ -32,6 +35,7 @@ abstract class BaseReport : Searchable {
         this.title = title
         this.description = description
         this.upvotes = 1
+        this.appDevicesAffected.add(Device(Build.MODEL?:"Unknown", Build.VERSION.SDK_INT))
     }
 
     @JsonProperty("id")

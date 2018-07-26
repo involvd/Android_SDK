@@ -1,5 +1,6 @@
 package com.involvd.sdk.ui.create_bug_report
 
+import android.content.Context
 import com.involvd.R
 import com.involvd.sdk.data.models.BaseReport
 import com.robj.radicallyreusable.base.mvp.fragment.BaseMvpPresenter
@@ -10,10 +11,11 @@ import io.reactivex.schedulers.Schedulers
 abstract class BaseReportPresenter<T : BaseReport, V : BaseReportView> : BaseMvpPresenter<V>() {
 
     lateinit var appId: String
+    lateinit var packageName: String
 
-    fun submitBugReport(title: String, description: String) {
+    fun submitBugReport(context: Context, title: String, description: String) {
         view?.showProgressDialog(R.string.progress_submitting_bug_report)
-        val report = createReport(title, description)
+        val report = createReport(context, title, description)
         writeReport(report)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -33,6 +35,6 @@ abstract class BaseReportPresenter<T : BaseReport, V : BaseReportView> : BaseMvp
     }
 
     abstract fun writeReport(report: T) : Observable<T>
-    abstract fun createReport(title: String, description: String): T
+    abstract fun createReport(context: Context, title: String, description: String): T
 
 }

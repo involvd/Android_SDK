@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.text.TextUtils
 import java.io.ByteArrayInputStream
 import java.security.MessageDigest
-import java.security.cert.CertificateException
 import java.security.cert.CertificateFactory
 import java.security.cert.X509Certificate
 
@@ -56,32 +55,20 @@ open class SdkUtils {
             var packageInfo: PackageInfo? = null
             try {
                 packageInfo = pm.getPackageInfo(packageName, flags)
-            } catch (e: PackageManager.NameNotFoundException) {
+                val signatures = packageInfo!!.signatures
+                val cert = signatures[0].toByteArray()
+                val input = ByteArrayInputStream(cert)
+                var cf: CertificateFactory? = CertificateFactory.getInstance("X509")
+                var c: X509Certificate? = cf!!.generateCertificate(input) as X509Certificate
+                val md = MessageDigest.getInstance("SHA1")
+                val publicKey = md.digest(c!!.getEncoded())
+                val hexString = byte2HexFormatted(publicKey)
+
+                return hashString("MD5", hexString)
+            } catch (e: Exception) {
                 e.printStackTrace()
+                return null
             }
-
-            val signatures = packageInfo!!.signatures
-            val cert = signatures[0].toByteArray()
-            val input = ByteArrayInputStream(cert)
-            var cf: CertificateFactory? = null
-            try {
-                cf = CertificateFactory.getInstance("X509")
-            } catch (e: CertificateException) {
-                e.printStackTrace()
-            }
-
-            var c: X509Certificate? = null
-            try {
-                c = cf!!.generateCertificate(input) as X509Certificate
-            } catch (e: CertificateException) {
-                e.printStackTrace()
-            }
-
-            val md = MessageDigest.getInstance("SHA1")
-            val publicKey = md.digest(c!!.getEncoded())
-            val hexString = byte2HexFormatted(publicKey)
-
-            return hashString("MD5", hexString)
         }
 
         private fun byte2HexFormatted(arr: ByteArray): String {

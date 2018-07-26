@@ -17,7 +17,7 @@ class FeatureRequestListFragment : BaseReportListFragment<FeatureRequestListView
     }
 
     override fun createPresenter(): FeatureRequestListPresenter {
-        return FeatureRequestListPresenter(BuildConfig.APPLICATION_ID)
+        return FeatureRequestListPresenter(activity!!.packageName)
     }
 
 }
