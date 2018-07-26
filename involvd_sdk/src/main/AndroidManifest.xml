@@ -9,8 +9,8 @@
         <activity android:name=".sdk.ui.create_feature_request.CreateFeatureRequestActivity" android:label="@string/title_create_feature_request" />
         <activity android:name=".sdk.ui.bug_list.BugReportListActivity" android:label="@string/title_bug_reports" />
         <activity android:name=".sdk.ui.feature_request_list.FeatureRequestListActivity" android:label="@string/title_feature_req_list" />
-        <activity android:name=".sdk.ui.view_bug_report.ViewBugReportActivity" />
-        <activity android:name=".sdk.ui.view_feature_request.ViewFeatureRequestActivity" />
+        <activity android:name=".sdk.ui.view_bug_report.ViewBugReportActivity" android:theme="@style/InvolvdSDK.AppTheme.Dialog" />
+        <activity android:name=".sdk.ui.view_feature_request.ViewFeatureRequestActivity" android:theme="@style/InvolvdSDK.AppTheme.Dialog" />
     </application>
 
 </manifest>

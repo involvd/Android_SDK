@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="title_involvd">Involvd</string>
+    <string name="title_involvd">Support Center</string>
     <string name="title_create_bug_report">Raise a bug</string>
     <string name="title_create_feature_request">Request a new feature</string>
     <string name="title_bug_reports">Bug reports</string>

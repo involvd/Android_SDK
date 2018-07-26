@@ -6,10 +6,10 @@ import android.content.Intent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.involvd.sdk.data.models.FeatureRequest;
+import com.involvd.sdk.ui.BaseDialogActivity;
 import com.involvd.sdk.ui.create_bug_report.ViewFeatureRequestFragment;
-import com.involvd.sdk.ui.create_feature_request.CreateFeatureRequestActivity;
 
-public class ViewFeatureRequestActivity extends CreateFeatureRequestActivity {
+public class ViewFeatureRequestActivity extends BaseDialogActivity {
 
     @Override
     protected String getFragmentName() {

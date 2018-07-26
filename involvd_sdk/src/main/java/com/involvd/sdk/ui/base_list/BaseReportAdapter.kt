@@ -24,7 +24,7 @@ abstract class BaseReportAdapter<T : BaseReport>(context: Context) : BaseSearchA
     }
 
     private fun createBugReportViewHolder(parent: ViewGroup?): BaseViewHolder {
-        context.setTheme(R.style.Involvd_SDK_Icon_Theme)
+        context.setTheme(R.style.InvolvdSDK_IconTheme)
         val binding = DataBindingUtil.inflate<InvolvdRowReportBinding>(LayoutInflater.from(context), R.layout.involvd_row_report, parent, false)
         val viewHolder = BaseReportViewHolder(binding)
         viewHolder.itemView.setOnClickListener {

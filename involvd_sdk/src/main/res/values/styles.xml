@@ -1,7 +1,14 @@
 <resources>
 
-    <style name="Involvd_SDK_Icon_Theme" parent="Theme.AppCompat.Light" >
+    <style name="InvolvdSDK.IconTheme" parent="Theme.AppCompat.Light" >
         <item name="miniIconColor">#66000000</item>
+    </style>
+
+    <style name="InvolvdSDK.AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog" >
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <attr name="miniIconColor" format="color" />
