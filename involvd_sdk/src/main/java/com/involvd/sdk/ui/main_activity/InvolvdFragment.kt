@@ -1,4 +1,4 @@
-package com.robj.involvd.ui.app
+package com.involvd.sdk.ui.app
 
 import android.content.Intent
 import android.os.Bundle

@@ -6,7 +6,7 @@ import com.involvd.sdk.data.models.BaseReport
 import com.involvd.sdk.data.models.BugReport
 import com.involvd.sdk.networking.retrofit.ApiClient
 import com.involvd.sdk.utils.SdkUtils
-import com.robj.involvd.ui.app_list.BaseReportListPresenter
+import com.involvd.sdk.ui.app_list.BaseReportListPresenter
 import com.robj.radicallyreusable.base.mvp.fragment.BaseMvpPresenter
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

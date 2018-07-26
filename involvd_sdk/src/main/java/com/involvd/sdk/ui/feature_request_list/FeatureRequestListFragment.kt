@@ -1,9 +1,10 @@
 package com.involvd.sdk.ui.bug_list
 
-import com.involvd.BuildConfig
 import com.involvd.R
 import com.involvd.sdk.data.models.FeatureRequest
-import com.robj.involvd.ui.app_list.BaseReportListFragment
+import com.involvd.sdk.ui.app_list.BaseReportListFragment
+import com.involvd.sdk.ui.base_list.BaseReportAdapter
+import com.involvd.sdk.ui.view_feature_request.ViewFeatureRequestActivity
 
 class FeatureRequestListFragment : BaseReportListFragment<FeatureRequestListView, FeatureRequestListPresenter, FeatureRequest, FeatureRequestAdapter>(), FeatureRequestListView {
 
@@ -13,6 +14,15 @@ class FeatureRequestListFragment : BaseReportListFragment<FeatureRequestListView
 
     override fun createAdapter(): FeatureRequestAdapter {
         val adapter = FeatureRequestAdapter(activity!!)
+        adapter.setOnClickListener(object : BaseReportAdapter.OnClickListener<FeatureRequest> {
+            override fun onClick(t: FeatureRequest) {
+                val i = ViewFeatureRequestActivity.getLaunchIntent(activity!!, t)
+                startActivity(i)
+            }
+            override fun onVoteClick(t: FeatureRequest, voteUp: Boolean?) {
+                //TODO
+            }
+        })
         return adapter
     }
 

@@ -1,4 +1,4 @@
-package com.robj.involvd.ui.app_list
+package com.involvd.sdk.ui.app_list
 
 import android.os.Bundle
 import android.view.View

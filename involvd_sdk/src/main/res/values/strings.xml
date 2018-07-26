@@ -47,4 +47,8 @@
     <string name="cancel">Cancel</string>
     <string name="dialog_create_success">Your submission will be visible in the list as soon as it\'s approved by the developer.</string>
 
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="error_bug_not_found">Bug report not found</string>
+
 </resources>
