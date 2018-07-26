@@ -10,7 +10,6 @@ public class BugReportListActivity extends BaseMvpActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(null);
         showHomeAsUp();
     }
 

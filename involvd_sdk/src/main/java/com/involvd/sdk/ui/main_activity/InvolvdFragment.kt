@@ -16,8 +16,11 @@ import kotlinx.android.synthetic.main.involvd_fragment_main.*
 
 class InvolvdFragment : BaseMvpFragment<BaseMvpView, BaseMvpPresenter<BaseMvpView>>() {
 
+    private var userIdentifier: String? = null;
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        userIdentifier = arguments?.getString(USER_ID)
         initViewPager()
         initFab()
     }
@@ -36,12 +39,12 @@ class InvolvdFragment : BaseMvpFragment<BaseMvpView, BaseMvpPresenter<BaseMvpVie
     }
 
     private fun submitBugReport() {
-        val i = Intent(activity, CreateBugReportActivity::class.java)
+        val i = CreateBugReportActivity.getLaunchIntent(activity, userIdentifier)
         startActivity(i)
     }
 
     private fun submitFeatureRequest() {
-        val i = Intent(activity, CreateFeatureRequestActivity::class.java)
+        val i = CreateFeatureRequestActivity.getLaunchIntent(activity, userIdentifier)
         startActivity(i)
     }
 
@@ -74,6 +77,10 @@ class InvolvdFragment : BaseMvpFragment<BaseMvpView, BaseMvpPresenter<BaseMvpVie
         if (o is BaseListFragment<*,*,*,*> && o.isBackPressed())
             return true
         return super.isBackPressed()
+    }
+
+    companion object {
+        const val USER_ID = "userIdentifier"
     }
 
 }

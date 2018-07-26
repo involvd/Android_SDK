@@ -42,6 +42,7 @@ abstract open class BaseCreateReportFragment<T : BaseReport, V : BaseReportView,
                     .setTitle(R.string.dialog_req_email)
                     .setMessage(R.string.dialog_req_email_bug_msg)
                     .setView(v)
+                    .setNeutralButton(R.string.cancel, null)
                     .setNegativeButton(R.string.skip, listener)
                     .setPositiveButton(R.string.done, listener)
                     .show()

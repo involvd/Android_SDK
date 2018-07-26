@@ -2,7 +2,7 @@
 
     <string name="title_involvd">Involvd</string>
     <string name="title_create_bug_report">Raise a bug</string>
-    <string name="title_create_feature_request">Raise feature request</string>
+    <string name="title_create_feature_request">Request a new feature</string>
     <string name="title_bug_reports">Bug reports</string>
     <string name="title_feature_req_list">Feature requests</string>
 
@@ -43,5 +43,6 @@
     <string name="hint_email">Enter your email address..</string>
     <string name="skip">Skip</string>
     <string name="done">Done</string>
+    <string name="cancel">Cancel</string>
 
 </resources>
