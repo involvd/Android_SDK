@@ -39,14 +39,22 @@ public class AppPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment;
         switch (position) {
             case POS_BUGS:
-                fragment = Fragment.instantiate(context, BugReportListFragment.class.getName(), bundle);
+                fragment = Fragment.instantiate(context, getBugFragmentClass().getName(), bundle);
                 return fragment;
             case POS_FEATURES:
-                fragment = Fragment.instantiate(context, FeatureRequestListFragment.class.getName(), bundle);
+                fragment = Fragment.instantiate(context, getFeatureRequestFragmentClass().getName(), bundle);
                 return fragment;
             default:
                 return null;
         }
+    }
+
+    protected Class getBugFragmentClass() {
+        return BugReportListFragment.class;
+    }
+
+    protected Class getFeatureRequestFragmentClass() {
+        return FeatureRequestListFragment.class;
     }
 
     protected Bundle createBundle() {
