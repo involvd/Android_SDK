@@ -37,6 +37,7 @@
 
     <string name="hint_bug_title">Write a brief title..</string>
     <string name="hint_bug_text">Write the details of your issue..</string>
+    <string name="hint_feature_req_text">Write the details of your request..</string>
 
     <string name="dialog_req_email">Get notified?</string>
     <string name="dialog_req_email_bug_msg">Enter your email if you\'d like to be notified on the progress of this bug ticket</string>
