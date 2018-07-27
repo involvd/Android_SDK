@@ -12,6 +12,9 @@ abstract class BaseReportListFragment<V: BaseReportListView, P: BaseReportListPr
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setSwipeToRefreshEnabled(true)
+        setOnScrollToLoadListener {
+            getPresenter().loadReports(activity!!)
+        }
         getPresenter().loadReports(activity!!)
     }
 

@@ -6,5 +6,6 @@ import com.robj.radicallyreusable.base.base_list.BaseListView
 interface BaseReportListView : BaseListView<Any> {
 
     fun addOrReplaceResult(result: Searchable?)
+    fun hasMoreToLoad(hasMoreToLoad: Boolean)
 
 }

@@ -21,8 +21,10 @@ abstract class BaseReportListPresenter<T: BaseReport, V: BaseReportListView>(val
         view?.showProgress()
         getReports(context, loadFromId)
                 .doOnNext {
-                    if(!it.isEmpty())
+                    if(!it.isEmpty() && it.size == getLimit())
                         loadFromId = it.get(it.size - 1).getId()
+                    else
+                        loadFromId = null
                 }
                 .map { it as List<Any> }
                 .subscribeOn(Schedulers.io())
@@ -33,12 +35,15 @@ abstract class BaseReportListPresenter<T: BaseReport, V: BaseReportListView>(val
                     } else
                         view?.showError(getEmptyResId())
                     view?.hideProgress()
+                    view?.hasMoreToLoad(loadFromId != null)
                 }, {
                     it.printStackTrace()
                     view?.hideProgress()
                     view?.showError(R.string.error_unknown) //TODO
                 })
     }
+
+    abstract fun getLimit(): Int
 
     abstract fun getEmptyResId(): Int
 
