@@ -2,6 +2,7 @@ package com.involvd.sdk.ui.create_bug_report
 
 import android.content.Context
 import android.text.TextUtils
+import com.involvd.sdk.data.PrefManager
 import com.involvd.sdk.data.models.BaseReport
 import com.involvd.sdk.utils.SdkUtils
 import io.reactivex.Observable
@@ -19,5 +20,10 @@ abstract class BaseCreatePresenter<T : BaseReport, V : BaseReportView>(val conte
     }
 
     abstract fun getApiCall(apiKey: String?, sigHash: String?, report: T): Observable<T>
+
+    fun setAndCacheUserIdentifier(userIdentifier: String?) {
+        this.userIdentifier = userIdentifier
+        PrefManager.setSubmitteeId(context, userIdentifier)
+    }
 
 }
