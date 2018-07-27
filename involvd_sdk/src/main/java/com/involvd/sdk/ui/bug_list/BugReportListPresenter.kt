@@ -14,14 +14,18 @@ import io.reactivex.schedulers.Schedulers
 
 class BugReportListPresenter(appId: String) : BaseReportListPresenter<BugReport, BugReportListView>(appId) {
 
+    companion object {
+        const val LIMIT = 10
+    }
+
     override fun getEmptyResId(): Int {
         return R.string.empty_bug_reports
     }
 
-    override fun getReports(context: Context): Observable<MutableList<BugReport>> {
+    override fun getReports(context: Context, loadFromId: String?): Observable<MutableList<BugReport>> {
         val apiKey = SdkUtils.getApiKeyForPackage(context, context.packageName)
         val sigHash = SdkUtils.getCertificateSHA1Fingerprint(context, context.packageName)
-        return ApiClient.getInstance(context).getBugs(context.packageName, apiKey, sigHash, null, null).toObservable() //TODO: Params
+        return ApiClient.getInstance(context).getBugs(context.packageName, apiKey, sigHash, null, loadFromId, LIMIT).toObservable()
     }
 
 }

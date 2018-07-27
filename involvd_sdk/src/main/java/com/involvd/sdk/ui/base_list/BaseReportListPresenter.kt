@@ -10,19 +10,29 @@ import io.reactivex.schedulers.Schedulers
 
 abstract class BaseReportListPresenter<T: BaseReport, V: BaseReportListView>(val appId: String) : BaseMvpPresenter<V>() {
 
+    private var loadFromId: String? = null
+
+    open fun refresh(context: Context) {
+        loadFromId = null
+        loadReports(context)
+    }
+
     fun loadReports(context: Context) {
         view?.showProgress()
-        getReports(context)
-                //TODO: Get bugs we're following
+        getReports(context, loadFromId)
+                .doOnNext {
+                    if(!it.isEmpty())
+                        loadFromId = it.get(it.size - 1).getId()
+                }
                 .map { it as List<Any> }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    view?.hideProgress()
-                    if(!it.isEmpty())
+                    if(!it.isEmpty()) {
                         view?.addResults(it)
-                    else
+                    } else
                         view?.showError(getEmptyResId())
+                    view?.hideProgress()
                 }, {
                     it.printStackTrace()
                     view?.hideProgress()
@@ -32,6 +42,6 @@ abstract class BaseReportListPresenter<T: BaseReport, V: BaseReportListView>(val
 
     abstract fun getEmptyResId(): Int
 
-    abstract fun getReports(context: Context) : Observable<MutableList<T>>
+    abstract fun getReports(context: Context, loadFromId: String?) : Observable<MutableList<T>>
 
 }

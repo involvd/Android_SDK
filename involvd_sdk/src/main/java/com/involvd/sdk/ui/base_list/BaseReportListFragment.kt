@@ -11,7 +11,13 @@ abstract class BaseReportListFragment<V: BaseReportListView, P: BaseReportListPr
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setSwipeToRefreshEnabled(true)
         getPresenter().loadReports(activity!!)
+    }
+
+    override fun onRefresh() {
+        super.onRefresh()
+        getPresenter().refresh(activity!!)
     }
 
     override fun addOrReplaceResult(result: Searchable?) {
