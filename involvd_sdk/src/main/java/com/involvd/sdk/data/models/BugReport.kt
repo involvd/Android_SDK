@@ -6,6 +6,7 @@ import com.involvd.sdk.data.Converters
 
 open class BugReport : BaseReport {
 
+    var reason: String? = null
     var _status: String
         @JsonProperty("status")
         get() = Converters.reportStatusToString(getStatus())
