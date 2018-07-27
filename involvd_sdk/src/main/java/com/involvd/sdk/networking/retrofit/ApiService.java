@@ -9,6 +9,7 @@ import java.util.List;
 import io.reactivex.Flowable;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -21,11 +22,11 @@ public interface ApiService {
     /** Places **/
 
     @GET("/bugs")
-    Flowable<List<BugReport>> getBugs(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("sig") String sig,
+    Flowable<List<BugReport>> getBugs(@Query("id") String appId, @Header("api_key") String apiKey, @Header("hash") String sig,
                                       @Query("status") String status, @Query("page") String previousBugId, @Query("limit") int limit);
 
     @GET("/featureRequests")
-    Flowable<List<FeatureRequest>> getFeatureRequests(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("sig") String sig,
+    Flowable<List<FeatureRequest>> getFeatureRequests(@Query("id") String appId, @Header("api_key") String apiKey, @Header("hash") String sig,
                                       @Query("status") String status, @Query("page") String previousFeatureReqId, @Query("limit") int limit);
 
     @POST("/createBugReport")
