@@ -50,5 +50,6 @@
     <string name="title">Title</string>
     <string name="description">Description</string>
     <string name="error_bug_not_found">Bug report not found</string>
+    <string name="thanks_for_vote">Thanks for your vote</string>
 
 </resources>

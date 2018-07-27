@@ -1,8 +1,11 @@
 package com.involvd.sdk.networking.retrofit;
 
 import com.involvd.sdk.data.models.BaseReport;
+import com.involvd.sdk.data.models.BaseVote;
 import com.involvd.sdk.data.models.BugReport;
 import com.involvd.sdk.data.models.FeatureRequest;
+
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -34,5 +37,11 @@ public interface ApiService {
 
     @POST("/createFeatureRequest")
     Flowable<FeatureRequest> createFeatureRequest(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("sig") String sig, @Body BaseReport baseReport);
+
+    @POST("/voteOnBug")
+    Flowable<JSONObject> voteOnBug(@Query("apiKey") String apiKey, @Query("sig") String sig, @Query("id") String appId, @Body BaseVote vote);
+
+    @POST("/voteOnFeatureRequest")
+    Flowable<JSONObject> voteOnFeatureRequest(@Query("apiKey") String apiKey, @Query("sig") String sig, @Query("id") String appId, @Body BaseVote vote);
 
 }

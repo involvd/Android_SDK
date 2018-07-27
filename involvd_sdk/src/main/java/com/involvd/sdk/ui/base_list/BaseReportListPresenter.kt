@@ -3,12 +3,13 @@ package com.involvd.sdk.ui.app_list
 import android.content.Context
 import com.involvd.R
 import com.involvd.sdk.data.models.BaseReport
+import com.involvd.sdk.data.models.BaseVote
 import com.robj.radicallyreusable.base.mvp.fragment.BaseMvpPresenter
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-abstract class BaseReportListPresenter<T: BaseReport, V: BaseReportListView>(val appId: String) : BaseMvpPresenter<V>() {
+abstract class BaseReportListPresenter<T: BaseReport, VT : BaseVote, V: BaseReportListView>(val appId: String) : BaseMvpPresenter<V>() {
 
     private var loadFromId: String? = null
 
@@ -42,6 +43,26 @@ abstract class BaseReportListPresenter<T: BaseReport, V: BaseReportListView>(val
                     view?.showError(R.string.error_unknown) //TODO
                 })
     }
+
+    fun voteOn(context: Context, t: T, voteUp: Boolean?) {
+        val vote = createVote(t, voteUp)
+        submitVote(context, vote)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    view?.adjustVoteCount(t, voteUp)
+                    view?.hideProgress()
+                    view?.showToast(R.string.thanks_for_vote)
+                }, {
+                    it.printStackTrace()
+                    view?.hideProgress()
+                    view?.showToast(R.string.error_unknown) //TODO
+                })
+    }
+
+    abstract fun createVote(t: T, voteUp: Boolean?) : VT
+
+    abstract fun submitVote(context: Context, t: VT): Observable<Boolean>
 
     abstract fun getLimit(): Int
 

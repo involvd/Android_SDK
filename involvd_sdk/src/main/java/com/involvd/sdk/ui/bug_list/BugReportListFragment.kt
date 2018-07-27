@@ -23,8 +23,8 @@ class BugReportListFragment : BaseReportListFragment<BugReportListView, BugRepor
                 val i = ViewBugReportActivity.getLaunchIntent(activity!!, t)
                 startActivity(i)
             }
-            override fun onVoteClick(t: BugReport, voteUp: Boolean?) {
-                //TODO
+            override fun onVoteClick(bugReport: BugReport, voteUp: Boolean?) {
+                getPresenter().voteOn(activity!!, bugReport, voteUp);
             }
         })
         return adapter

@@ -1,11 +1,16 @@
 package com.involvd.sdk.data.models
 
 import android.support.annotation.NonNull
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
  * Created by jj on 05/02/18.
  */
-open abstract class BaseVote(
+@JsonIgnoreProperties(ignoreUnknown = true)
+open abstract class BaseVote (
+        @NonNull
+        private var id: String,
         @NonNull
         open var appId: String,
         @NonNull
@@ -15,6 +20,18 @@ open abstract class BaseVote(
         @NonNull
         open var votedUp: Boolean? = true
 ) {
+
+        constructor() : this("", "", "", "")
+
+        @JsonProperty("id")
+        fun getId(): String {
+                return id
+        }
+
+        @JsonProperty("id")
+        fun setId(id: String) {
+                this.id = id
+        }
 
         override fun equals(other: Any?): Boolean {
                 if(other is String)

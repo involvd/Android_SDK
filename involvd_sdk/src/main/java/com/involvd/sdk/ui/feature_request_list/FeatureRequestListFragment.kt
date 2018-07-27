@@ -19,8 +19,8 @@ class FeatureRequestListFragment : BaseReportListFragment<FeatureRequestListView
                 val i = ViewFeatureRequestActivity.getLaunchIntent(activity!!, t)
                 startActivity(i)
             }
-            override fun onVoteClick(t: FeatureRequest, voteUp: Boolean?) {
-                //TODO
+            override fun onVoteClick(featureRequest: FeatureRequest, voteUp: Boolean?) {
+                getPresenter().voteOn(activity!!, featureRequest, voteUp);
             }
         })
         return adapter
