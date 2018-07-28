@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.TextInputLayout
 import android.text.method.KeyListener
+import android.view.Gravity
 import android.view.View
 import android.widget.EditText
 import com.involvd.R
@@ -27,6 +28,8 @@ abstract class BaseEditReportFragment<T : BaseReport, V : BaseEditReportView<T>,
     private fun initViews(view: View) {
         titleKeyListener = title.keyListener
         descriptionKeyListener = description.keyListener
+        description.gravity = Gravity.LEFT or Gravity.TOP
+        description.setLines(1)
         setEditable(false)
     }
 

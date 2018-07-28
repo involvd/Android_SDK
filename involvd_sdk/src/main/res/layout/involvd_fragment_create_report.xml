@@ -25,6 +25,7 @@
         android:id="@+id/description_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:hint="@string/hint_bug_text"
         app:layout_constraintTop_toBottomOf="@+id/title_hint" >
 
@@ -32,7 +33,6 @@
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:lines="7"
             android:background="@drawable/et_background"
             android:textAppearance="?android:textAppearanceMedium" />
