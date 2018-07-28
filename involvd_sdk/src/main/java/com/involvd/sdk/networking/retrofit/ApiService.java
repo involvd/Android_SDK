@@ -27,23 +27,21 @@ public interface ApiService {
     /** Places **/
 
     @GET("/bugs")
-    Flowable<List<BugReport>> getBugs(@Query("id") String appId, @Header("api_key") String apiKey, @Header("hash") String sig,
-                                      @Query("status") String status, @Query("page") String previousBugId, @Query("limit") int limit);
+    Flowable<List<BugReport>> getBugs(@Query("status") String status, @Query("page") String previousBugId, @Query("limit") int limit);
 
     @GET("/featureRequests")
-    Flowable<List<FeatureRequest>> getFeatureRequests(@Query("id") String appId, @Header("api_key") String apiKey, @Header("hash") String sig,
-                                      @Query("status") String status, @Query("page") String previousFeatureReqId, @Query("limit") int limit);
+    Flowable<List<FeatureRequest>> getFeatureRequests(@Query("status") String status, @Query("page") String previousFeatureReqId, @Query("limit") int limit);
 
     @POST("/createBugReport")
-    Flowable<BugReport> createBugReport(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("sig") String sig, @Body BaseReport baseReport);
+    Flowable<BugReport> createBugReport(@Body BaseReport baseReport);
 
     @POST("/createFeatureRequest")
-    Flowable<FeatureRequest> createFeatureRequest(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("sig") String sig, @Body BaseReport baseReport);
+    Flowable<FeatureRequest> createFeatureRequest(@Body BaseReport baseReport);
 
     @POST("/voteOnBug")
-    Flowable<BugVote> voteOnBug(@Query("apiKey") String apiKey, @Query("sig") String sig, @Query("id") String appId, @Body BugVote vote);
+    Flowable<BugVote> voteOnBug(@Body BugVote vote);
 
     @POST("/voteOnFeatureRequest")
-    Flowable<FeatureVote> voteOnFeatureRequest(@Header("api_key") String apiKey, @Header("hash") String sig, @Query("id") String appId, @Body FeatureVote vote);
+    Flowable<FeatureVote> voteOnFeatureRequest(@Body FeatureVote vote);
 
 }

@@ -12,9 +12,7 @@ import io.reactivex.Observable
 class FeatureRequestListPresenter(appId: String) : BaseReportListPresenter<FeatureRequest, FeatureVote, FeatureRequestListView>(appId) {
 
     override fun submitVote(context: Context, vote: FeatureVote): Observable<Boolean> {
-        val apiKey = SdkUtils.getApiKeyForPackage(context, context.packageName)
-        val sigHash = SdkUtils.getCertificateSHA1Fingerprint(context, context.packageName)
-        return ApiClient.getInstance(context).voteOnFeatureRequest(apiKey, sigHash, appId, vote).map { true }.toObservable()
+        return ApiClient.getInstance(context).voteOnFeatureRequest(vote).map { true }.toObservable()
     }
 
     override fun getLimit(): Int {
@@ -30,9 +28,7 @@ class FeatureRequestListPresenter(appId: String) : BaseReportListPresenter<Featu
     }
 
     override fun getReports(context: Context, loadFromId: String?): Observable<MutableList<FeatureRequest>> {
-        val apiKey = SdkUtils.getApiKeyForPackage(context, context.packageName)
-        val sigHash = SdkUtils.getCertificateSHA1Fingerprint(context, context.packageName)
-        return ApiClient.getInstance(context).getFeatureRequests(appId, apiKey, sigHash, null, loadFromId, getLimit()).toObservable()
+        return ApiClient.getInstance(context).getFeatureRequests(null, loadFromId, getLimit()).toObservable()
     }
 
 }

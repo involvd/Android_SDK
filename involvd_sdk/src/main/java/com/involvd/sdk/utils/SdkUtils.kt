@@ -15,13 +15,14 @@ open class SdkUtils {
     companion object {
 
         private var TAG = SdkUtils::class.java.simpleName
-        private const val META_KEY = "com.involvd.apiKey"
+        const val META_ID = "com.involvd.app_id"
+        const val META_KEY = "com.involvd.api_key"
 
         /**
          * @packageName being null retrieves all
          */
         @JvmStatic
-        open fun getApiKeysForPackages(context: Context, packageName: String? = null): HashMap<String, String> {
+        open fun getMetaDataKeyForPackages(context: Context, key: String, packageName: String? = null): HashMap<String, String> {
             val i = Intent("android.intent.action.MAIN")
             i.addCategory("android.intent.category.LAUNCHER")
             if(!TextUtils.isEmpty(packageName))
@@ -30,16 +31,25 @@ open class SdkUtils {
             val appMap = HashMap<String, String>()
             if (list?.isNotEmpty() == true) {
                 for (packageInfo in list) {
-                    if (packageInfo?.activityInfo?.applicationInfo?.metaData?.containsKey(META_KEY) == true)
-                        appMap.put(packageInfo.activityInfo.packageName, packageInfo.activityInfo.applicationInfo.metaData.getString(META_KEY))
+                    if (packageInfo?.activityInfo?.applicationInfo?.metaData?.containsKey(key) == true)
+                        appMap.put(packageInfo.activityInfo.packageName, packageInfo.activityInfo.applicationInfo.metaData.getString(key))
                 }
             }
             return appMap;
         }
 
         @JvmStatic
+        open fun getAppIdForPackage(context: Context, packageName: String): String? {
+            val map = getMetaDataKeyForPackages(context, META_ID, packageName)
+            if(map.isEmpty())
+                return null
+            else
+                return map.get(packageName)
+        }
+
+        @JvmStatic
         open fun getApiKeyForPackage(context: Context, packageName: String): String? {
-            val map = getApiKeysForPackages(context, packageName)
+            val map = getMetaDataKeyForPackages(context, META_KEY, packageName)
             if(map.isEmpty())
                 return null
             else

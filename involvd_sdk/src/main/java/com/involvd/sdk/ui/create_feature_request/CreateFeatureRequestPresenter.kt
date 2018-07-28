@@ -11,7 +11,7 @@ import io.reactivex.Observable
 open class CreateFeatureRequestPresenter(context: Context) : BaseCreatePresenter<FeatureRequest, CreateFeatureRequestView>(context) {
 
     override fun getApiCall(apiKey: String?, sigHash: String?, featureRequest: FeatureRequest): Observable<FeatureRequest> {
-        return ApiClient.getInstance(context).createFeatureRequest(context.packageName, apiKey, sigHash, featureRequest).toObservable();
+        return ApiClient.getInstance(context).createFeatureRequest(featureRequest).toObservable();
     }
 
     override fun createReport(context: Context, title: String, description: String): FeatureRequest {

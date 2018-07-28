@@ -16,9 +16,7 @@ import io.reactivex.schedulers.Schedulers
 class BugReportListPresenter(appId: String) : BaseReportListPresenter<BugReport, BugVote, BugReportListView>(appId) {
 
     override fun submitVote(context: Context, vote: BugVote): Observable<Boolean> {
-        val apiKey = SdkUtils.getApiKeyForPackage(context, context.packageName)
-        val sigHash = SdkUtils.getCertificateSHA1Fingerprint(context, context.packageName)
-        return ApiClient.getInstance(context).voteOnBug(apiKey, sigHash, appId, vote).map { true }.toObservable()
+        return ApiClient.getInstance(context).voteOnBug(vote).map { true }.toObservable()
     }
 
     override fun getLimit(): Int {
@@ -34,9 +32,7 @@ class BugReportListPresenter(appId: String) : BaseReportListPresenter<BugReport,
     }
 
     override fun getReports(context: Context, loadFromId: String?): Observable<MutableList<BugReport>> {
-        val apiKey = SdkUtils.getApiKeyForPackage(context, context.packageName)
-        val sigHash = SdkUtils.getCertificateSHA1Fingerprint(context, context.packageName)
-        return ApiClient.getInstance(context).getBugs(appId, apiKey, sigHash, null, loadFromId, getLimit()).toObservable()
+        return ApiClient.getInstance(context).getBugs(null, loadFromId, getLimit()).toObservable()
     }
 
 }

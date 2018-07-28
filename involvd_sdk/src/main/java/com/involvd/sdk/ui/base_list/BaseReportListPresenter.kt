@@ -33,9 +33,9 @@ abstract class BaseReportListPresenter<T: BaseReport, VT : BaseVote, V: BaseRepo
                 .subscribe({
                     if(!it.isEmpty()) {
                         view?.addResults(it)
+                        view?.hideProgress()
                     } else
                         view?.showError(getEmptyResId())
-                    view?.hideProgress()
                     view?.hasMoreToLoad(loadFromId != null)
                 }, {
                     it.printStackTrace()

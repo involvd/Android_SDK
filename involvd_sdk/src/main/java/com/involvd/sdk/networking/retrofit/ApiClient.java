@@ -5,10 +5,12 @@ import android.support.annotation.VisibleForTesting;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.involvd.BuildConfig;
+import com.involvd.sdk.utils.SdkUtils;
 
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
@@ -34,6 +36,19 @@ public class ApiClient {
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30,TimeUnit.SECONDS);
         builder.addInterceptor(new NetworkCheckIntercepter(context));
+        builder.addInterceptor(chain -> {
+            String appId = SdkUtils.getAppIdForPackage(context, context.getPackageName());
+            if(!appId.equals(context.getPackageName()))
+                appId = context.getPackageName() + ":" + appId;
+            String apiKey = SdkUtils.getApiKeyForPackage(context, context.getPackageName());
+            String sigHash = SdkUtils.getCertificateSHA1Fingerprint(context, context.getPackageName());
+            Request newRequest = chain.request().newBuilder()
+                    .addHeader("app_id", appId)
+                    .addHeader("api_key", apiKey)
+                    .addHeader("hash", sigHash)
+                    .build();
+            return chain.proceed(newRequest);
+        });
         if (BuildConfig.DEBUG) {
             final HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
             builder.addInterceptor(httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)); //Use log level of BODY if you NEEED the body, otherwise use BASIC

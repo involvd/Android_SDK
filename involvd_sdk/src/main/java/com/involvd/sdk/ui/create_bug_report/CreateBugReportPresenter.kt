@@ -13,7 +13,7 @@ import io.reactivex.Observable
 open class CreateBugReportPresenter(context: Context) : BaseCreatePresenter<BugReport, CreateBugReportView>(context) {
 
     override fun getApiCall(apiKey: String?, sigHash: String?, report: BugReport): Observable<BugReport> {
-        return ApiClient.getInstance(context).createBugReport(context.packageName, apiKey, sigHash, report)
+        return ApiClient.getInstance(context).createBugReport(report)
                 .toObservable()
     }
 
