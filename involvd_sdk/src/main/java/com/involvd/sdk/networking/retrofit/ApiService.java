@@ -3,7 +3,9 @@ package com.involvd.sdk.networking.retrofit;
 import com.involvd.sdk.data.models.BaseReport;
 import com.involvd.sdk.data.models.BaseVote;
 import com.involvd.sdk.data.models.BugReport;
+import com.involvd.sdk.data.models.BugVote;
 import com.involvd.sdk.data.models.FeatureRequest;
+import com.involvd.sdk.data.models.FeatureVote;
 
 import org.json.JSONObject;
 
@@ -39,9 +41,9 @@ public interface ApiService {
     Flowable<FeatureRequest> createFeatureRequest(@Query("id") String appId, @Query("apiKey") String apiKey, @Query("sig") String sig, @Body BaseReport baseReport);
 
     @POST("/voteOnBug")
-    Flowable<JSONObject> voteOnBug(@Query("apiKey") String apiKey, @Query("sig") String sig, @Query("id") String appId, @Body BaseVote vote);
+    Flowable<BugVote> voteOnBug(@Query("apiKey") String apiKey, @Query("sig") String sig, @Query("id") String appId, @Body BugVote vote);
 
     @POST("/voteOnFeatureRequest")
-    Flowable<JSONObject> voteOnFeatureRequest(@Query("apiKey") String apiKey, @Query("sig") String sig, @Query("id") String appId, @Body BaseVote vote);
+    Flowable<FeatureVote> voteOnFeatureRequest(@Header("api_key") String apiKey, @Header("hash") String sig, @Query("id") String appId, @Body FeatureVote vote);
 
 }
