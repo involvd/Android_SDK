@@ -96,6 +96,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:drawableLeft="@drawable/wrap_watching"
                 android:gravity="center_vertical"
+                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="@id/name"
                 app:layout_constraintTop_toBottomOf="@+id/description"
                 tools:text="0" />
@@ -111,6 +112,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:drawableLeft="@drawable/wrap_thumbs_up"
                 android:gravity="center_vertical"
+                android:visibility="gone"
                 app:layout_constraintLeft_toRightOf="@+id/followerCount"
                 app:layout_constraintTop_toTopOf="@+id/followerCount"
                 tools:text="0" />
@@ -126,6 +128,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:drawableLeft="@drawable/wrap_thumbs_down"
                 android:gravity="center_vertical"
+                android:visibility="gone"
                 app:layout_constraintLeft_toRightOf="@+id/upVoteCount"
                 app:layout_constraintTop_toTopOf="@+id/followerCount"
                 tools:text="0" />

@@ -25,15 +25,14 @@ public class NetworkCheckIntercepter implements okhttp3.Interceptor {
     @Override
     public Response intercept(final Chain chain) throws IOException {
         if (!hasNetworkConnection(getContext())) {
-            throw new ApiRequestException(R.string.error_network_error, ApiRequestException.Kind.NETWORK);
+            throw new ApiClient.ApiException(R.string.error_network_error);
         } else {
             return chain.proceed(chain.request());
         }
     }
 
     public static boolean hasNetworkConnection(Context context) {
-        ConnectivityManager cm =
-                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }

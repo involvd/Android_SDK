@@ -16,7 +16,9 @@ import io.reactivex.schedulers.Schedulers
 class BugReportListPresenter(appId: String) : BaseReportListPresenter<BugReport, BugVote, BugReportListView>(appId) {
 
     override fun submitVote(context: Context, vote: BugVote): Observable<Boolean> {
-        return ApiClient.getInstance(context).voteOnBug(vote).map { true }.toObservable()
+        return ApiClient.getInstance(context).voteOnBug(vote).map { true }
+                .compose(ApiClient.applyFlowableRules())
+                .toObservable()
     }
 
     override fun getLimit(): Int {

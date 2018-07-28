@@ -4,6 +4,7 @@ import android.content.Context
 import com.involvd.R
 import com.involvd.sdk.data.models.BaseReport
 import com.involvd.sdk.data.models.BaseVote
+import com.involvd.sdk.networking.retrofit.ApiClient
 import com.robj.radicallyreusable.base.mvp.fragment.BaseMvpPresenter
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -40,8 +41,15 @@ abstract class BaseReportListPresenter<T: BaseReport, VT : BaseVote, V: BaseRepo
                 }, {
                     it.printStackTrace()
                     view?.hideProgress()
-                    view?.showError(R.string.error_unknown) //TODO
+                    view?.showError(getErrorMsg(it)) //TODO
                 })
+    }
+
+    open fun getErrorMsg(it: Throwable): Int {
+        return if(it is ApiClient.ApiException)
+            it.errorResId
+        else
+            R.string.error_unknown
     }
 
     fun voteOn(context: Context, t: T, voteUp: Boolean?) {
