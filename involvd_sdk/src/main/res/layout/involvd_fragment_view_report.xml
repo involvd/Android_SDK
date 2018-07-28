@@ -5,7 +5,12 @@
     android:minWidth="@dimen/min_dialog_width"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <include layout="@layout/involvd_fragment_create_report" />
+    <include
+        android:id="@+id/container"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_title"
+        layout="@layout/involvd_fragment_create_report" />
 
     <LinearLayout
         android:id="@+id/progress_container"
@@ -32,5 +37,16 @@
             android:gravity="center" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/cancel_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:text="@android:string/ok"
+        android:textColor="?attr/colorPrimaryDark"
+        android:background="?attr/selectableItemBackground"
+        app:layout_constraintTop_toBottomOf="@id/container"
+        app:layout_constraintRight_toRightOf="@id/container" />
 
 </android.support.constraint.ConstraintLayout>

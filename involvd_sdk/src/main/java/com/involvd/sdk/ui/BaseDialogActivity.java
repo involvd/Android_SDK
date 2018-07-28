@@ -3,6 +3,7 @@ package com.involvd.sdk.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.widget.TextView;
 
 import com.involvd.R;
 
@@ -17,4 +18,13 @@ public abstract class BaseDialogActivity extends BaseMvpActivity {
         pushFragment(fragment, false);
     }
 
+    @Override
+    public void setTitle(CharSequence title) {
+        ((TextView) findViewById(R.id.dialog_title)).setText(title);
+    }
+
+    @Override
+    public void setTitle(int titleId) {
+        ((TextView) findViewById(R.id.dialog_title)).setText(titleId);
+    }
 }

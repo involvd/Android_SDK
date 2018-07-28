@@ -7,6 +7,17 @@
     android:orientation="vertical"
     android:minWidth="@dimen/min_dialog_width" >
 
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:alpha="0.6"
+        android:textAppearance="?android:textAppearanceLarge"
+        tools:text="@string/details" />
+
     <ScrollView
         android:id="@+id/content_frame"
         android:layout_width="wrap_content"

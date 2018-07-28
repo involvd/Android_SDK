@@ -31,6 +31,7 @@ abstract class BaseEditReportFragment<T : BaseReport, V : BaseEditReportView<T>,
         description.gravity = Gravity.LEFT or Gravity.TOP
         description.setLines(1)
         setEditable(false)
+        cancel_btn.setOnClickListener { activity?.finish() }
     }
 
     private fun toggleEditable(et: EditText, hint: TextInputLayout, keyListener: KeyListener, isEditable: Boolean) {
