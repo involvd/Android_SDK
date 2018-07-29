@@ -1,12 +1,21 @@
 package com.involvd.sdk.ui.bug_list
 
+import android.os.Bundle
+import android.view.View
 import com.involvd.R
 import com.involvd.sdk.data.models.FeatureRequest
 import com.involvd.sdk.ui.app_list.BaseReportListFragment
 import com.involvd.sdk.ui.base_list.BaseReportAdapter
+import com.involvd.sdk.ui.base_report.BaseCreateReportFragment
 import com.involvd.sdk.ui.view_feature_request.ViewFeatureRequestActivity
 
 class FeatureRequestListFragment : BaseReportListFragment<FeatureRequestListView, FeatureRequestListPresenter, FeatureRequest, FeatureRequestAdapter>(), FeatureRequestListView {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if(arguments?.containsKey(BaseCreateReportFragment.USER_ID) == true)
+            getPresenter().userIdentifier = arguments!!.getString(BaseCreateReportFragment.USER_ID)
+    }
 
     override fun getSearchString(): String {
         return getString(R.string.progress_feature_requests)

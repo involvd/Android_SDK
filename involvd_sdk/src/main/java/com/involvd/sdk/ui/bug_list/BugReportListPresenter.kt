@@ -15,6 +15,8 @@ import io.reactivex.schedulers.Schedulers
 
 class BugReportListPresenter(appId: String) : BaseReportListPresenter<BugReport, BugVote, BugReportListView>(appId) {
 
+    var userIdentifier: String? = null
+
     override fun submitVote(context: Context, vote: BugVote): Observable<Boolean> {
         return ApiClient.getInstance(context).voteOnBug(vote).map { true }
                 .compose(ApiClient.applyFlowableRules())
@@ -29,8 +31,8 @@ class BugReportListPresenter(appId: String) : BaseReportListPresenter<BugReport,
         return R.string.empty_bug_reports
     }
 
-    override fun createVote(t: BugReport, voteUp: Boolean?): BugVote {
-        return BugVote(appId, t.getId(), "", voteUp)
+    override fun createVote(context: Context, t: BugReport, voteUp: Boolean?): BugVote {
+        return BugVote(appId, t.getId(), userIdentifier?:SdkUtils.createUniqueIdentifier(context), voteUp)
     }
 
     override fun getReports(context: Context, loadFromId: String?): Observable<MutableList<BugReport>> {

@@ -51,7 +51,7 @@ class InvolvdFragment : BaseMvpFragment<BaseMvpView, BaseMvpPresenter<BaseMvpVie
     private lateinit var viewPagerAdapter: AppPagerAdapter
 
     private fun initViewPager() {
-        viewPagerAdapter = AppPagerAdapter(activity, childFragmentManager)
+        viewPagerAdapter = AppPagerAdapter(activity, childFragmentManager, userIdentifier)
         view_pager.adapter = viewPagerAdapter
         view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}

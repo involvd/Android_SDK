@@ -6,8 +6,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.text.TextUtils;
 
 import com.involvd.R;
+import com.involvd.sdk.ui.base_report.BaseCreateReportFragment;
 import com.involvd.sdk.ui.bug_list.BugReportListFragment;
 import com.involvd.sdk.ui.bug_list.FeatureRequestListFragment;
 
@@ -23,10 +25,18 @@ public class AppPagerAdapter extends FragmentPagerAdapter {
     public static final int POS_FEATURES = 1;
 
     private final Context context;
+    private final String userIdentifier;
 
     public AppPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         this.context = context;
+        this.userIdentifier = null;
+    }
+
+    public AppPagerAdapter(Context context, FragmentManager fm, String userIdentifier) {
+        super(fm);
+        this.context = context;
+        this.userIdentifier = userIdentifier;
     }
 
     protected Context getContext() {
@@ -58,7 +68,10 @@ public class AppPagerAdapter extends FragmentPagerAdapter {
     }
 
     protected Bundle createBundle() {
-        return new Bundle();
+        Bundle bundle = new Bundle();
+        if(!TextUtils.isEmpty(userIdentifier))
+            bundle.putString(BaseCreateReportFragment.USER_ID, userIdentifier);
+        return bundle;
     }
 
     @Nullable

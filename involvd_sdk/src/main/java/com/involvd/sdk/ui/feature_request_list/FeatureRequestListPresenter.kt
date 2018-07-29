@@ -11,6 +11,8 @@ import io.reactivex.Observable
 
 class FeatureRequestListPresenter(appId: String) : BaseReportListPresenter<FeatureRequest, FeatureVote, FeatureRequestListView>(appId) {
 
+    var userIdentifier: String? = null
+
     override fun submitVote(context: Context, vote: FeatureVote): Observable<Boolean> {
         return ApiClient.getInstance(context).voteOnFeatureRequest(vote).map { true }.toObservable()
     }
@@ -23,8 +25,8 @@ class FeatureRequestListPresenter(appId: String) : BaseReportListPresenter<Featu
         return R.string.empty_feature_requests
     }
 
-    override fun createVote(t: FeatureRequest, voteUp: Boolean?): FeatureVote {
-        return FeatureVote(appId, t.getId(), "", voteUp)
+    override fun createVote(context: Context, t: FeatureRequest, voteUp: Boolean?): FeatureVote {
+        return FeatureVote(appId, t.getId(), userIdentifier?:SdkUtils.createUniqueIdentifier(context), voteUp)
     }
 
     override fun getReports(context: Context, loadFromId: String?): Observable<MutableList<FeatureRequest>> {

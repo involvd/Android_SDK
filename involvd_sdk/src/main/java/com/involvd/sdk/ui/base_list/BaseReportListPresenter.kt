@@ -53,7 +53,7 @@ abstract class BaseReportListPresenter<T: BaseReport, VT : BaseVote, V: BaseRepo
     }
 
     fun voteOn(context: Context, t: T, voteUp: Boolean?) {
-        val vote = createVote(t, voteUp)
+        val vote = createVote(context, t, voteUp)
         submitVote(context, vote)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -68,7 +68,7 @@ abstract class BaseReportListPresenter<T: BaseReport, VT : BaseVote, V: BaseRepo
                 })
     }
 
-    abstract fun createVote(t: T, voteUp: Boolean?) : VT
+    abstract fun createVote(context: Context, t: T, voteUp: Boolean?) : VT
 
     abstract fun submitVote(context: Context, t: VT): Observable<Boolean>
 

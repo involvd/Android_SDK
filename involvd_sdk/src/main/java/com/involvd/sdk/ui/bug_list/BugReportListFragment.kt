@@ -9,8 +9,15 @@ import com.involvd.sdk.data.models.BugReport
 import com.involvd.sdk.ui.base_list.BaseReportAdapter
 import com.involvd.sdk.ui.view_bug_report.ViewBugReportActivity
 import com.involvd.sdk.ui.app_list.BaseReportListFragment
+import com.involvd.sdk.ui.base_report.BaseCreateReportFragment
 
 class BugReportListFragment : BaseReportListFragment<BugReportListView, BugReportListPresenter, BugReport, BugReportAdapter>(), BugReportListView {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if(arguments?.containsKey(BaseCreateReportFragment.USER_ID) == true)
+            getPresenter().userIdentifier = arguments!!.getString(BaseCreateReportFragment.USER_ID)
+    }
 
     override fun getSearchString(): String {
         return getString(R.string.progress_bug_reports)

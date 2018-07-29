@@ -8,21 +8,21 @@ class PrefManager {
 
     companion object {
 
-        const val SUBMITTEE_ID = "SUBMITTEE_ID"
+        const val UNIQUE_ID = "UNIQUE_ID"
 
         @JvmStatic
-        fun getSubmitteeId(context: Context): String? {
-            return PrefUtils.readStringPref(context, SUBMITTEE_ID)
+        fun getUniqueId(context: Context): String? {
+            return PrefUtils.readStringPref(context, UNIQUE_ID)
         }
 
         @JvmStatic
-        fun setSubmitteeId(context: Context, submitteeId: String?) {
+        fun setUniqueId(context: Context, submitteeId: String?) {
             if(TextUtils.isEmpty(submitteeId)) {
                 val prefs = Array(1) { submitteeId }
                 PrefUtils.removePrefs(context, prefs)
                 return
             }
-            PrefUtils.writeStringPref(context, SUBMITTEE_ID, submitteeId)
+            PrefUtils.writeStringPref(context, UNIQUE_ID, submitteeId)
         }
 
     }

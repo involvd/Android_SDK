@@ -5,10 +5,13 @@ import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.text.TextUtils
+import com.involvd.sdk.data.PrefManager
 import java.io.ByteArrayInputStream
 import java.security.MessageDigest
 import java.security.cert.CertificateFactory
 import java.security.cert.X509Certificate
+import java.util.*
+
 
 open class SdkUtils {
 
@@ -108,6 +111,15 @@ open class SdkUtils {
             }
 
             return result.toString()
+        }
+
+        fun createUniqueIdentifier(context: Context): String {
+            var uniqueID = PrefManager.getUniqueId(context)
+            if(TextUtils.isEmpty(uniqueID)) {
+                uniqueID = UUID.randomUUID().toString()
+                PrefManager.setUniqueId(context, uniqueID)
+            }
+            return uniqueID!!
         }
 
     }

@@ -44,7 +44,7 @@ abstract open class BaseCreateReportFragment<T : BaseReport, V : BaseReportView,
         if(!wasDialogShown && TextUtils.isEmpty(getPresenter().userIdentifier)) {
             val v = layoutInflater.inflate(R.layout.dialog_edittext, null)
             val editText = v.edittext
-            editText.setText(PrefManager.getSubmitteeId(activity!!))
+            editText.setText(PrefManager.getUniqueId(activity!!))
             val listener = DialogInterface.OnClickListener { dialog, which ->
                 wasDialogShown = true
                 getPresenter().setAndCacheUserIdentifier(editText.text.toString().trim())

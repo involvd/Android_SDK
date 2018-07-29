@@ -23,7 +23,7 @@ abstract class BaseCreatePresenter<T : BaseReport, V : BaseReportView>(val conte
 
     fun setAndCacheUserIdentifier(userIdentifier: String?) {
         this.userIdentifier = userIdentifier
-        PrefManager.setSubmitteeId(context, userIdentifier)
+        PrefManager.setUniqueId(context, userIdentifier)
     }
 
 }
