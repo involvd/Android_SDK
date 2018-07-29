@@ -15,6 +15,7 @@ import com.robj.radicallyreusable.base.mvp.BaseViewHolder
 abstract class BaseReportAdapter<T : BaseReport>(context: Context) : BaseSearchAdapter<Searchable, BaseViewHolder>(context) {
 
     private var onClickListener: OnClickListener<T>? = null
+    private val inProgressSet = HashSet<String>()
 
     override fun createVH(parent: ViewGroup?, viewType: Int): BaseViewHolder? {
         return when(viewType) {
@@ -37,7 +38,11 @@ abstract class BaseReportAdapter<T : BaseReport>(context: Context) : BaseSearchA
             val voteUp: Boolean = it.id == viewHolder.binding.voteUpBtn.id
             getOnClickListener()?.let {
                 val bugReport = getItemAtPosition(viewHolder.adapterPosition) as T
-                it.onVoteClick(bugReport, voteUp)
+                if(!inProgressSet.contains(bugReport.getId())) {
+                    inProgressSet.add(bugReport.getId())
+                    it.onVoteClick(bugReport, voteUp)
+                    notifyItemChanged(viewHolder.adapterPosition)
+                }
             }
         }
         viewHolder.binding.voteUpBtn.setOnClickListener(voteOnClickListener)
@@ -86,11 +91,25 @@ abstract class BaseReportAdapter<T : BaseReport>(context: Context) : BaseSearchA
                     override fun getName(): String {
                         return viewModel.name
                     }
+
+                    override fun isVoteInProgress(): Boolean {
+                        return inProgressSet.contains(viewModel.getId())
+                    }
+
+                    override fun hasVotedUp(): Boolean {
+                        return this@BaseReportAdapter.hasVotedUp(viewModel)
+                    }
+
+                    override fun hasVotedDown(): Boolean {
+                        return this@BaseReportAdapter.hasVotedDown(viewModel)
+                    }
                 })
             }
         }
     }
 
+    abstract fun hasVotedUp(viewModel: T): Boolean
+    abstract fun hasVotedDown(viewModel: T): Boolean
     abstract fun getStatusLabelResId(viewModel: T): Int
 
     override fun getViewType(position: Int): Int {
@@ -119,6 +138,16 @@ abstract class BaseReportAdapter<T : BaseReport>(context: Context) : BaseSearchA
         }
     }
 
+    override fun addOrReplace(o: Searchable?) {
+        clearInProgress(o)
+        super.addOrReplace(o)
+    }
+
+    fun clearInProgress(o: Searchable?) {
+        if(o is BaseReport)
+            inProgressSet.remove(o.getId())
+    }
+
     interface BaseReportViewModel : Searchable {
 
         fun getIsFollowing() : Boolean
@@ -136,6 +165,12 @@ abstract class BaseReportAdapter<T : BaseReport>(context: Context) : BaseSearchA
         fun getDescription() : String?
 
         fun getStatusLabelResId(): Int
+
+        fun isVoteInProgress(): Boolean
+
+        fun hasVotedUp(): Boolean
+
+        fun hasVotedDown(): Boolean
 
     }
 

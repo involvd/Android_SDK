@@ -27,6 +27,10 @@ abstract class BaseReportListFragment<V: BaseReportListView, P: BaseReportListPr
         adapter.addOrReplace(result)
     }
 
+    override fun clearInProgress(result: Searchable?) {
+        adapter.clearInProgress(result)
+    }
+
     override fun adjustVoteCount(t: Any, voteUp: Boolean?) {
         when(voteUp) {
             true -> (t as BaseReport).upvotes++

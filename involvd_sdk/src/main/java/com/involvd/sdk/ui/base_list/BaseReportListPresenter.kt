@@ -68,6 +68,7 @@ abstract class BaseReportListPresenter<T: BaseReport, VT : BaseVote, V: BaseRepo
                 }, {
                     it.printStackTrace()
                     view?.hideProgress()
+                    view?.clearInProgress(t)
                     view?.showToast(R.string.error_unknown) //TODO
                 })
     }

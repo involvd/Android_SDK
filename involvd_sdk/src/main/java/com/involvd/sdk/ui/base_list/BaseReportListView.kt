@@ -8,5 +8,6 @@ interface BaseReportListView : BaseListView<Any> {
     fun addOrReplaceResult(result: Searchable?)
     fun hasMoreToLoad(hasMoreToLoad: Boolean)
     fun adjustVoteCount(t: Any, voteUp: Boolean?)
+    fun clearInProgress(result: Searchable?)
 
 }

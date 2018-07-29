@@ -13,8 +13,10 @@ class FeatureRequestListFragment : BaseReportListFragment<FeatureRequestListView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(arguments?.containsKey(BaseCreateReportFragment.USER_ID) == true)
+        if(arguments?.containsKey(BaseCreateReportFragment.USER_ID) == true) {
             getPresenter().userIdentifier = arguments!!.getString(BaseCreateReportFragment.USER_ID)
+            adapter.userIdentifier = arguments!!.getString(BaseCreateReportFragment.USER_ID)
+        }
     }
 
     override fun getSearchString(): String {
