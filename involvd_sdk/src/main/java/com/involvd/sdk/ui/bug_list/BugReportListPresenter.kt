@@ -2,16 +2,16 @@ package com.involvd.sdk.ui.bug_list
 
 import android.content.Context
 import com.involvd.R
-import com.involvd.sdk.data.models.BaseReport
+import com.involvd.sdk.data.DatabaseManager
+import com.involvd.sdk.data.PrefManager
 import com.involvd.sdk.data.models.BugReport
 import com.involvd.sdk.data.models.BugVote
 import com.involvd.sdk.networking.retrofit.ApiClient
-import com.involvd.sdk.utils.SdkUtils
 import com.involvd.sdk.ui.app_list.BaseReportListPresenter
-import com.robj.radicallyreusable.base.mvp.fragment.BaseMvpPresenter
+import com.involvd.sdk.utils.SdkUtils
+import io.reactivex.Flowable
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 class BugReportListPresenter(appId: String) : BaseReportListPresenter<BugReport, BugVote, BugReportListView>(appId) {
 
@@ -35,8 +35,16 @@ class BugReportListPresenter(appId: String) : BaseReportListPresenter<BugReport,
         return BugVote(appId, t.getId(), userIdentifier?:SdkUtils.createUniqueIdentifier(context), voteUp)
     }
 
-    override fun getReports(context: Context, loadFromId: String?): Observable<MutableList<BugReport>> {
-        return ApiClient.getInstance(context).getBugs(null, loadFromId, getLimit()).toObservable()
+    override fun getReports(context: Context, loadFromId: String?, refresh: Boolean): Observable<MutableList<BugReport>> {
+        val lastFetchTime = PrefManager.getBugListTime(context)
+        var f: Flowable<MutableList<BugReport>>
+        if(!refresh && System.currentTimeMillis() - lastFetchTime > TimeUnit.MINUTES.toMillis(15))
+            f = DatabaseManager.getBugReports(context)
+        else
+            f = ApiClient.getInstance(context).getBugs(null, loadFromId, getLimit())
+        return f.toObservable()
+                .flatMap { reports -> DatabaseManager.addOrUpdateBugReports(context, reports).map { reports } }
+
     }
 
 }

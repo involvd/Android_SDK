@@ -16,12 +16,16 @@ abstract class BaseReportListPresenter<T: BaseReport, VT : BaseVote, V: BaseRepo
 
     open fun refresh(context: Context) {
         loadFromId = null
-        loadReports(context)
+        loadReports(context, true)
     }
 
     fun loadReports(context: Context) {
+        loadReports(context, false)
+    }
+
+    fun loadReports(context: Context, refresh: Boolean) {
         view?.showProgress()
-        getReports(context, loadFromId)
+        getReports(context, loadFromId, refresh)
                 .doOnNext {
                     if(!it.isEmpty() && it.size == getLimit())
                         loadFromId = it.get(it.size - 1).getId()
@@ -76,6 +80,6 @@ abstract class BaseReportListPresenter<T: BaseReport, VT : BaseVote, V: BaseRepo
 
     abstract fun getEmptyResId(): Int
 
-    abstract fun getReports(context: Context, loadFromId: String?) : Observable<MutableList<T>>
+    abstract fun getReports(context: Context, loadFromId: String?, refresh: Boolean) : Observable<MutableList<T>>
 
 }

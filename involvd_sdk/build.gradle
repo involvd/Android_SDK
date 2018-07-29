@@ -52,6 +52,9 @@ android {
 
 ext {
     supportLibraryVersion = '27.1.1'
+    room = "1.1.1"
+    retrofit = "2.4.0"
+    okhttp = "3.9.1"
 }
 
 dependencies {
@@ -64,12 +67,17 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     implementation 'com.github.iamrobj:Radically-Reusable:0.5'
     //Retrofit
-    compile 'com.squareup.okhttp3:okhttp:3.9.1'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.9.1'
-    compile 'com.squareup.retrofit2:retrofit:2.4.0'
-    compile 'com.squareup.retrofit2:converter-jackson:2.4.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    compile "com.squareup.okhttp3:okhttp:$okhttp"
+    compile "com.squareup.okhttp3:logging-interceptor:$okhttp"
+    compile "com.squareup.retrofit2:retrofit:$retrofit"
+    compile "com.squareup.retrofit2:converter-jackson:$retrofit"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //
+    implementation "android.arch.persistence.room:runtime:$room"
+    implementation "android.arch.persistence.room:rxjava2:$room"
+    annotationProcessor "android.arch.persistence.room:compiler:$room"
+    kapt "android.arch.persistence.room:compiler:$room"
 }
 repositories {
     mavenCentral()
