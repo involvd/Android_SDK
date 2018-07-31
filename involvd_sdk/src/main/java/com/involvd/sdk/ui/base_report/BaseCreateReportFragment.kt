@@ -14,7 +14,7 @@ import com.involvd.sdk.data.models.BaseReport
 import com.involvd.sdk.ui.create_bug_report.BaseCreatePresenter
 import com.involvd.sdk.ui.create_bug_report.BaseReportFragment
 import com.involvd.sdk.ui.create_bug_report.BaseReportView
-import kotlinx.android.synthetic.main.dialog_edittext.view.*
+import kotlinx.android.synthetic.main.involvd_dialog_edittext.view.*
 import kotlinx.android.synthetic.main.involvd_fragment_create_report.*
 
 abstract open class BaseCreateReportFragment<T : BaseReport, V : BaseReportView, P : BaseCreatePresenter<T, V>> :  BaseReportFragment<T, V, P>() {
@@ -42,7 +42,7 @@ abstract open class BaseCreateReportFragment<T : BaseReport, V : BaseReportView,
      */
     override fun canSubmit(): Boolean {
         if(!wasDialogShown && TextUtils.isEmpty(getPresenter().userIdentifier)) {
-            val v = layoutInflater.inflate(R.layout.dialog_edittext, null)
+            val v = layoutInflater.inflate(R.layout.involvd_dialog_edittext, null)
             val editText = v.edittext
             editText.setText(PrefManager.getUniqueId(activity!!))
             val listener = DialogInterface.OnClickListener { dialog, which ->

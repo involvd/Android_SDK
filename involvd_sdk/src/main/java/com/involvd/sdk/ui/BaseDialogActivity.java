@@ -12,7 +12,7 @@ public abstract class BaseDialogActivity extends BaseMvpActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dialog);
+        setContentView(R.layout.involvd_activity_dialog);
         Bundle bundle = getIntent() != null && getIntent().getExtras() != null ? getIntent().getExtras() : new Bundle();
         Fragment fragment = Fragment.instantiate(this, getFragmentName(), bundle);
         pushFragment(fragment, false);
