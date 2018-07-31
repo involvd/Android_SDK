@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.View
 import com.involvd.R
 import com.involvd.sdk.data.models.FeatureRequest
+import com.involvd.sdk.data.viewmodels.FeatureRequestViewModel
 import com.involvd.sdk.ui.app_list.BaseReportListFragment
 import com.involvd.sdk.ui.base_list.BaseReportAdapter
 import com.involvd.sdk.ui.base_report.BaseCreateReportFragment
 import com.involvd.sdk.ui.view_feature_request.ViewFeatureRequestActivity
 
-class FeatureRequestListFragment : BaseReportListFragment<FeatureRequestListView, FeatureRequestListPresenter, FeatureRequest, FeatureRequestAdapter>(), FeatureRequestListView {
+class FeatureRequestListFragment : BaseReportListFragment<FeatureRequestListView, FeatureRequestListPresenter, FeatureRequestViewModel, FeatureRequestAdapter>(), FeatureRequestListView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,12 +26,12 @@ class FeatureRequestListFragment : BaseReportListFragment<FeatureRequestListView
 
     override fun createAdapter(): FeatureRequestAdapter {
         val adapter = FeatureRequestAdapter(activity!!)
-        adapter.setOnClickListener(object : BaseReportAdapter.OnClickListener<FeatureRequest> {
-            override fun onClick(t: FeatureRequest) {
+        adapter.setOnClickListener(object : BaseReportAdapter.OnClickListener<FeatureRequestViewModel> {
+            override fun onClick(t: FeatureRequestViewModel) {
                 val i = ViewFeatureRequestActivity.getLaunchIntent(activity!!, t)
                 startActivity(i)
             }
-            override fun onVoteClick(featureRequest: FeatureRequest, voteUp: Boolean?) {
+            override fun onVoteClick(featureRequest: FeatureRequestViewModel, voteUp: Boolean?) {
                 getPresenter().voteOn(activity!!, featureRequest, voteUp);
             }
         })

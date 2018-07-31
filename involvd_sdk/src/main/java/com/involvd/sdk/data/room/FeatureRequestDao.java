@@ -35,7 +35,7 @@ public interface FeatureRequestDao {
 
     @Query("SELECT * FROM featureRequest")
     @Transaction
-    public abstract Flowable<List<FeatureRequest>> getFeatureRequests();
+    public abstract Flowable<List<FeatureRequestViewModel>> getFeatureRequests();
 
     @Query("SELECT * FROM featureRequest WHERE " + FeatureRequest.FIELD_STATUS + " = :status AND " + FeatureRequest.FIELD_APP_ID + " = :appId")
     @Transaction

@@ -23,6 +23,8 @@ open abstract class BaseVote (
 
         constructor() : this("", "", "", "")
 
+        constructor(id: String) : this(id, "", "", "")
+
         @JsonProperty("id")
         fun getId(): String {
                 return id

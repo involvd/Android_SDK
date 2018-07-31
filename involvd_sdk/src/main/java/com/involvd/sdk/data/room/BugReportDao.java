@@ -35,7 +35,7 @@ public interface BugReportDao {
 
     @Query("SELECT * FROM bugReport")
     @Transaction
-    public abstract Flowable<List<BugReport>> getBugReports();
+    public abstract Flowable<List<BugReportViewModel>> getBugReports();
 
     @Query("SELECT * FROM bugReport WHERE " + BugReport.FIELD_STATUS + " = :status AND " + BugReport.FIELD_APP_ID + " = :appId")
     @Transaction

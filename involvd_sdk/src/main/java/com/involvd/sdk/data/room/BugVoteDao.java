@@ -7,6 +7,8 @@ import android.arch.persistence.room.Query;
 
 import com.involvd.sdk.data.models.BugVote;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 import io.reactivex.Flowable;
@@ -30,4 +32,6 @@ public interface BugVoteDao {
     @Query("DELETE FROM bugVote WHERE " + BugVote.FIELD_REPORT_ID + " = :bugReportId")
     int delete(String bugReportId);
 
+    @Query("SELECT * FROM bugVote WHERE " + BugVote.FIELD_REPORT_ID + " in (:reportIds)")
+    Flowable<List<BugVote>> getBugVotes(List<String> reportIds);
 }

@@ -30,4 +30,7 @@ public interface FeatureVoteDao {
     @Query("DELETE FROM featureVote WHERE " + FeatureVote.FIELD_REPORT_ID + " = :featureRequestId")
     int delete(String featureRequestId);
 
+    @Query("SELECT * FROM featureVote WHERE " + FeatureVote.FIELD_REPORT_ID + " in (:reportIds)")
+    Flowable<List<FeatureVote>> getFeatureVotes(List<String> reportIds);
+
 }

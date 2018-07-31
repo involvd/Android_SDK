@@ -2,17 +2,19 @@ package com.involvd.sdk.ui.bug_list
 
 import android.content.Context
 import android.text.TextUtils
-import com.involvd.sdk.data.models.BugReport
+import com.involvd.sdk.data.viewmodels.BugReportViewModel
 import com.involvd.sdk.ui.base_list.BaseReportAdapter
 import com.involvd.sdk.utils.SdkUtils
 
-class BugReportAdapter(context: Context) : BaseReportAdapter<BugReport>(context) {
+class BugReportAdapter(context: Context) : BaseReportAdapter<BugReportViewModel>(context) {
 
-    override fun hasVotedUp(submittedBy: BugReport): Boolean {
-        return false
+    override fun hasVotedUp(viewModel: BugReportViewModel): Boolean {
+        return viewModel.hasVotedUp?:false
     }
 
-    override fun hasVotedDown(viewModel: BugReport): Boolean {
+    override fun hasVotedDown(viewModel: BugReportViewModel): Boolean {
+        if(viewModel.hasVotedUp != null)
+            return !viewModel.hasVotedUp!!
         return false
     }
 
@@ -24,7 +26,7 @@ class BugReportAdapter(context: Context) : BaseReportAdapter<BugReport>(context)
         }
         set(userIdentifier) { this.userIdentifier = userIdentifier }
 
-    override fun getStatusLabelResId(viewModel: BugReport): Int {
+    override fun getStatusLabelResId(viewModel: BugReportViewModel): Int {
         return viewModel.getStatus().labelResId
     }
 

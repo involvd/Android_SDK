@@ -3,9 +3,7 @@ package com.involvd.sdk.data;
 import android.arch.persistence.room.Room
 import android.content.Context
 import com.involvd.BuildConfig
-import com.involvd.sdk.data.models.BugReport
-import com.involvd.sdk.data.models.FeatureRequest
-import com.involvd.sdk.data.models.Status
+import com.involvd.sdk.data.models.*
 import com.involvd.sdk.data.room.AppDatabase
 import com.involvd.sdk.data.viewmodels.BugReportViewModel
 import com.involvd.sdk.data.viewmodels.FeatureRequestViewModel
@@ -48,7 +46,7 @@ class DatabaseManager {
         }
 
         @JvmStatic
-        fun getBugReports(context: Context): Flowable<MutableList<BugReport>> {
+        fun getBugReports(context: Context): Flowable<MutableList<BugReportViewModel>> {
             return getDatabase(context).bugReportDao().getBugReports().compose(applyFlowableRules())
         }
 
@@ -62,7 +60,17 @@ class DatabaseManager {
             return performGetAction(bugReportId, getDatabase(context).bugReportDao()::getBugReport)
         }
 
-        /** Bug Report **/
+        @JvmStatic
+        fun addOrUpdateBugReportVote(context: Context, bugVote: BugVote): Observable<Boolean> {
+            return performDbAction(bugVote, getDatabase(context).bugVoteDao()::insertOrUpdate)
+        }
+
+        @JvmStatic
+        fun getBugVotes(context: Context, ids: List<String>): Flowable<MutableList<BugVote>> {
+            return getDatabase(context).bugVoteDao().getBugVotes(ids).compose(applyFlowableRules())
+        }
+
+        /** Feature Request **/
         @JvmStatic
         fun addOrUpdateFeatureRequest(context: Context, featureRequest: FeatureRequest): Observable<Boolean> {
             return performDbAction(featureRequest, getDatabase(context).featureRequestDao()::insertOrUpdate)
@@ -74,7 +82,7 @@ class DatabaseManager {
         }
 
         @JvmStatic
-        fun getFeatureRequests(context: Context): Flowable<MutableList<FeatureRequest>> {
+        fun getFeatureRequests(context: Context): Flowable<MutableList<FeatureRequestViewModel>> {
             return getDatabase(context).featureRequestDao().featureRequests.compose(applyFlowableRules())
         }
 
@@ -87,6 +95,18 @@ class DatabaseManager {
         fun getFeatureRequest(context: Context, featureRequestId: String): Observable<Optional<FeatureRequestViewModel>> {
             return performGetAction(featureRequestId, getDatabase(context).featureRequestDao()::getFeatureRequest)
         }
+
+        @JvmStatic
+        fun addOrUpdateFeatureVote(context: Context, featureVote: FeatureVote): Observable<Boolean> {
+            return performDbAction(featureVote, getDatabase(context).featureVoteDao()::insertOrUpdate)
+        }
+
+        @JvmStatic
+        fun getFeatureVotes(context: Context, ids: List<String>): Flowable<MutableList<FeatureVote>> {
+            return getDatabase(context).featureVoteDao().getFeatureVotes(ids).compose(applyFlowableRules())
+        }
+
+        /** End **/
 
             private fun <T, R> performGetAction(data: T, dbMethod: KFunction1<T, R>): Observable<Optional<R>> {
             return Observable.create({ e: ObservableEmitter<Optional<R>> ->
