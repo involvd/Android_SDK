@@ -2,17 +2,15 @@ package com.involvd.sdk.ui.bug_list
 
 import android.os.Bundle
 import android.view.View
-import com.involvd.BuildConfig
 import com.involvd.R
-import com.involvd.sdk.data.models.BaseReport
-import com.involvd.sdk.data.models.BugReport
+import com.involvd.sdk.data.models.BugVote
 import com.involvd.sdk.data.viewmodels.BugReportViewModel
-import com.involvd.sdk.ui.base_list.BaseReportAdapter
-import com.involvd.sdk.ui.view_bug_report.ViewBugReportActivity
 import com.involvd.sdk.ui.app_list.BaseReportListFragment
+import com.involvd.sdk.ui.base_list.BaseReportAdapter
 import com.involvd.sdk.ui.base_report.BaseCreateReportFragment
+import com.involvd.sdk.ui.view_bug_report.ViewBugReportActivity
 
-class BugReportListFragment : BaseReportListFragment<BugReportListView, BugReportListPresenter, BugReportViewModel, BugReportAdapter>(), BugReportListView {
+class BugReportListFragment : BaseReportListFragment<BugReportListView, BugReportListPresenter, BugReportViewModel, BugReportAdapter, BugVote>(), BugReportListView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,6 +40,10 @@ class BugReportListFragment : BaseReportListFragment<BugReportListView, BugRepor
 
     override fun createPresenter(): BugReportListPresenter {
         return BugReportListPresenter(activity!!.packageName)
+    }
+
+    override fun setVote(viewModel: BugReportViewModel, vote: BugVote) {
+        viewModel._votes.add(vote)
     }
 
 }

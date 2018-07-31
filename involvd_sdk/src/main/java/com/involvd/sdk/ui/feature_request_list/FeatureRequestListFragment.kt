@@ -3,14 +3,14 @@ package com.involvd.sdk.ui.bug_list
 import android.os.Bundle
 import android.view.View
 import com.involvd.R
-import com.involvd.sdk.data.models.FeatureRequest
+import com.involvd.sdk.data.models.FeatureVote
 import com.involvd.sdk.data.viewmodels.FeatureRequestViewModel
 import com.involvd.sdk.ui.app_list.BaseReportListFragment
 import com.involvd.sdk.ui.base_list.BaseReportAdapter
 import com.involvd.sdk.ui.base_report.BaseCreateReportFragment
 import com.involvd.sdk.ui.view_feature_request.ViewFeatureRequestActivity
 
-class FeatureRequestListFragment : BaseReportListFragment<FeatureRequestListView, FeatureRequestListPresenter, FeatureRequestViewModel, FeatureRequestAdapter>(), FeatureRequestListView {
+class FeatureRequestListFragment : BaseReportListFragment<FeatureRequestListView, FeatureRequestListPresenter, FeatureRequestViewModel, FeatureRequestAdapter, FeatureVote>(), FeatureRequestListView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,6 +40,10 @@ class FeatureRequestListFragment : BaseReportListFragment<FeatureRequestListView
 
     override fun createPresenter(): FeatureRequestListPresenter {
         return FeatureRequestListPresenter(activity!!.packageName)
+    }
+
+    override fun setVote(viewModel: FeatureRequestViewModel, vote: FeatureVote) {
+        viewModel._votes.add(vote)
     }
 
 }

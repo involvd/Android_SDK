@@ -10,7 +10,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-abstract class BaseReportListPresenter<T: BaseReport, VT : BaseVote, V: BaseReportListView>(val appId: String) : BaseMvpPresenter<V>() {
+abstract class BaseReportListPresenter<T: BaseReport, VT : BaseVote, V: BaseReportListView<T, VT>>(val appId: String) : BaseMvpPresenter<V>() {
 
     private var loadFromId: String? = null
 
@@ -62,7 +62,7 @@ abstract class BaseReportListPresenter<T: BaseReport, VT : BaseVote, V: BaseRepo
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    view?.adjustVoteCount(t, voteUp)
+                    view?.adjustVoteCount(t, vote)
                     view?.hideProgress()
                     view?.showToast(R.string.thanks_for_vote)
                 }, {
