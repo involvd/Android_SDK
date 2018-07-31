@@ -34,9 +34,9 @@ class FeatureRequestListPresenter(appId: String) : BaseReportListPresenter<Featu
     }
 
     override fun getReports(context: Context, loadFromId: String?, refresh: Boolean): Observable<MutableList<FeatureRequest>> {
-        val lastFetchTime = PrefManager.getFeatureListTime(context)
+        val lastFetchTimedOut = (System.currentTimeMillis() - PrefManager.getFeatureListTime(context)) < TimeUnit.MINUTES.toMillis(15)
         var f: Flowable<MutableList<FeatureRequest>>
-        if(!refresh && System.currentTimeMillis() - lastFetchTime > TimeUnit.MINUTES.toMillis(15))
+        if(!refresh && !lastFetchTimedOut)
             f = DatabaseManager.getFeatureRequests(context)
         else
             f = ApiClient.getInstance(context).getFeatureRequests(null, loadFromId, getLimit())

@@ -6,6 +6,7 @@ import com.involvd.sdk.data.DatabaseManager
 import com.involvd.sdk.data.PrefManager
 import com.involvd.sdk.data.models.BugReport
 import com.involvd.sdk.data.models.BugVote
+import com.involvd.sdk.data.models.FeatureRequest
 import com.involvd.sdk.networking.retrofit.ApiClient
 import com.involvd.sdk.ui.app_list.BaseReportListPresenter
 import com.involvd.sdk.utils.SdkUtils
@@ -36,9 +37,9 @@ class BugReportListPresenter(appId: String) : BaseReportListPresenter<BugReport,
     }
 
     override fun getReports(context: Context, loadFromId: String?, refresh: Boolean): Observable<MutableList<BugReport>> {
-        val lastFetchTime = PrefManager.getBugListTime(context)
+        val lastFetchTimedOut = (System.currentTimeMillis() - PrefManager.getBugListTime(context)) < TimeUnit.MINUTES.toMillis(15)
         var f: Flowable<MutableList<BugReport>>
-        if(!refresh && System.currentTimeMillis() - lastFetchTime > TimeUnit.MINUTES.toMillis(15))
+        if(!refresh && !lastFetchTimedOut)
             f = DatabaseManager.getBugReports(context)
         else
             f = ApiClient.getInstance(context).getBugs(null, loadFromId, getLimit())

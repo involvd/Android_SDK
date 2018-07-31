@@ -42,7 +42,7 @@ open abstract class BaseVote (
         }
 
         companion object {
-                const val FIELD_ID = "reportId"
+                const val FIELD_REPORT_ID = "reportId"
                 const val FIELD_APP_ID = "appId"
                 const val FIELD_USER_ID = "userId"
         }

@@ -24,10 +24,10 @@ public interface FeatureVoteDao {
     @Query("SELECT * FROM featureVote")
     Flowable<List<FeatureVote>> getAll();
 
-    @Query("SELECT * FROM featureVote WHERE " + FeatureVote.FIELD_ID + " = :featureRequestId LIMIT 1")
+    @Query("SELECT * FROM featureVote WHERE " + FeatureVote.FIELD_REPORT_ID + " = :featureRequestId LIMIT 1")
     FeatureVote getFeatureVote(String featureRequestId);
 
-    @Query("DELETE FROM featureVote WHERE " + FeatureVote.FIELD_ID + " = :featureRequestId")
+    @Query("DELETE FROM featureVote WHERE " + FeatureVote.FIELD_REPORT_ID + " = :featureRequestId")
     int delete(String featureRequestId);
 
 }

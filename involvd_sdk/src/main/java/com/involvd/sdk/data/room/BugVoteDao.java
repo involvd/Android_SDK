@@ -24,10 +24,10 @@ public interface BugVoteDao {
     @Query("SELECT * FROM bugVote")
     Flowable<List<BugVote>> getAll();
 
-    @Query("SELECT * FROM bugVote WHERE " + BugVote.FIELD_ID + " = :bugReportId LIMIT 1")
+    @Query("SELECT * FROM bugVote WHERE " + BugVote.FIELD_REPORT_ID + " = :bugReportId LIMIT 1")
     BugVote getBugVote(String bugReportId);
 
-    @Query("DELETE FROM bugVote WHERE " + BugVote.FIELD_ID + " = :bugReportId")
+    @Query("DELETE FROM bugVote WHERE " + BugVote.FIELD_REPORT_ID + " = :bugReportId")
     int delete(String bugReportId);
 
 }
