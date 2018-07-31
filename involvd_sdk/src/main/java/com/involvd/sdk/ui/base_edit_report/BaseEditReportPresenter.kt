@@ -5,7 +5,6 @@ import android.os.Bundle
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.involvd.R
 import com.involvd.sdk.data.models.BaseReport
-import com.involvd.sdk.ui.create_bug_report.BaseReportPresenter
 import com.robj.radicallyreusable.base.components.Optional
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -35,7 +34,7 @@ abstract class BaseEditReportPresenter<T : BaseReport, V: BaseEditReportView<T>>
         }, {
             it.printStackTrace()
             view?.hideProgress()
-            view?.showError(R.string.error_unknown) //TODO
+            view?.showError(R.string.error_sdk_unknown) //TODO
         })
     }
 

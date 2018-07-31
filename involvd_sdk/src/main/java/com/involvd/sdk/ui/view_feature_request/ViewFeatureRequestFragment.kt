@@ -6,7 +6,7 @@ import com.involvd.sdk.data.models.FeatureRequest
 class ViewFeatureRequestFragment : BaseEditReportFragment<FeatureRequest, BaseEditReportView<FeatureRequest>, BaseEditReportPresenter<FeatureRequest, BaseEditReportView<FeatureRequest>>>() {
 
     override fun getSuccessResId(): Int {
-        return R.string.error_unknown
+        return R.string.error_sdk_unknown
     }
 
     override fun createPresenter(): BaseEditReportPresenter<FeatureRequest, BaseEditReportView<FeatureRequest>> {

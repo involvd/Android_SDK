@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.view.View
 import com.involvd.R
+import com.involvd.sdk.data.PrefManager
+import com.involvd.sdk.networking.retrofit.ApiClient
 import com.involvd.sdk.ui.create_bug_report.CreateBugReportActivity
 import com.involvd.sdk.ui.create_feature_request.CreateFeatureRequestActivity
 import com.involvd.sdk.ui.main_activity.AppPagerAdapter
@@ -12,6 +14,8 @@ import com.robj.radicallyreusable.base.base_list.BaseListFragment
 import com.robj.radicallyreusable.base.mvp.fragment.BaseMvpFragment
 import com.robj.radicallyreusable.base.mvp.fragment.BaseMvpPresenter
 import com.robj.radicallyreusable.base.mvp.fragment.BaseMvpView
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.involvd_fragment_main.*
 
 class InvolvdFragment : BaseMvpFragment<BaseMvpView, BaseMvpPresenter<BaseMvpView>>() {
@@ -23,6 +27,20 @@ class InvolvdFragment : BaseMvpFragment<BaseMvpView, BaseMvpPresenter<BaseMvpVie
         userIdentifier = arguments?.getString(USER_ID)
         initViewPager()
         initFab()
+        subscribeToApiAuth()
+        if(PrefManager.isValid(activity!!))
+            fab_create.visibility = View.VISIBLE
+    }
+
+    private fun subscribeToApiAuth() {
+        ApiClient.getAuthPublishSubect()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    fab_create.visibility = if(it) View.VISIBLE else View.GONE
+                }, {
+                    it.printStackTrace()
+                })
     }
 
     private fun getAppId(): String {

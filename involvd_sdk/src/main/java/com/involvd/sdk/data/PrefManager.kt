@@ -7,6 +7,7 @@ import com.robj.radicallyreusable.base.utils.PrefUtils
 object PrefManager {
 
     const val UNIQUE_ID = "UNIQUE_ID"
+    const val IS_VALID = "IS_VALID"
     const val LAST_BUG_LIST_TIME = "LAST_BUG_LIST_TIME"
     const val LAST_FEATURE_LIST_TIME = "LAST_FEATURE_LIST_TIME"
 
@@ -39,6 +40,14 @@ object PrefManager {
 
     fun getFeatureListTime(context: Context) : Long {
         return PrefUtils.readLongPref(context, LAST_FEATURE_LIST_TIME)
+    }
+
+    fun setIsValid(context: Context, isValid: Boolean) {
+        PrefUtils.writeBoolPref(context, IS_VALID, isValid)
+    }
+
+    fun isValid(context: Context) : Boolean {
+        return PrefUtils.readBooleanPref(context, IS_VALID)
     }
 
 }

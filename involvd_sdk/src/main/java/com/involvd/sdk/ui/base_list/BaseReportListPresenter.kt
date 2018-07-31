@@ -53,7 +53,7 @@ abstract class BaseReportListPresenter<T: BaseReport, VT : BaseVote, V: BaseRepo
         return if(it is ApiClient.ApiException)
             it.errorResId
         else
-            R.string.error_unknown
+            R.string.error_sdk_unknown
     }
 
     fun voteOn(context: Context, t: T, voteUp: Boolean?) {
@@ -69,7 +69,7 @@ abstract class BaseReportListPresenter<T: BaseReport, VT : BaseVote, V: BaseRepo
                     it.printStackTrace()
                     view?.hideProgress()
                     view?.clearInProgress(t)
-                    view?.showToast(R.string.error_unknown) //TODO
+                    view?.showToast(R.string.error_sdk_unknown) //TODO
                 })
     }
 

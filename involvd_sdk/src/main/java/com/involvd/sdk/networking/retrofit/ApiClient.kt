@@ -5,9 +5,12 @@ import android.content.Context
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.involvd.BuildConfig
 import com.involvd.R
+import com.involvd.sdk.data.PrefManager
 import com.involvd.sdk.utils.SdkUtils
 import io.reactivex.FlowableTransformer
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.PublishSubject
+import okhttp3.Interceptor
 
 import java.util.concurrent.TimeUnit
 
@@ -28,6 +31,12 @@ object ApiClient {
     private val BASE_API_URL = "https://us-central1-involvd-app.cloudfunctions.net"
 
     private var apiService: ApiService? = null
+    val authPublishSubject = PublishSubject.create<Boolean>()
+
+    @JvmStatic
+    fun getAuthPublishSubect(): PublishSubject<Boolean> {
+        return authPublishSubject
+    }
 
     @JvmStatic
     fun getInstance(context: Context): ApiService {
@@ -48,11 +57,24 @@ object ApiClient {
             val apiKey = SdkUtils.getApiKeyForPackage(context, context.packageName)
             val sigHash = SdkUtils.getCertificateSHA1Fingerprint(context, context.packageName)
             val newRequest = chain.request().newBuilder()
-                    .addHeader("app_id", appId!!)
-                    .addHeader("api_key", apiKey!!)
-                    .addHeader("hash", sigHash!!)
+                    .addHeader("app_id", appId?:null)
+                    .addHeader("api_key", apiKey?:null)
+                    .addHeader("hash", sigHash?:null)
                     .build()
             chain.proceed(newRequest)
+        }
+        builder.addInterceptor {
+                chain: Interceptor.Chain ->
+            val request = chain.request();
+            val response = chain.proceed(request);
+            if (response.code() == 200) {
+                PrefManager.setIsValid(context, true)
+                authPublishSubject.onNext(true)
+            } else if(response.code() == 401) {
+                PrefManager.setIsValid(context, false)
+                authPublishSubject.onNext(false)
+            }
+            response;
         }
         if (BuildConfig.DEBUG) {
             val httpLoggingInterceptor = HttpLoggingInterceptor()

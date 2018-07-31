@@ -25,7 +25,7 @@ abstract class BaseReportPresenter<T : BaseReport, V : BaseReportView> : BaseMvp
                 }, {
                     it.printStackTrace()
                     view?.hideProgressDialog()
-                    view?.showToast(R.string.error_unknown)
+                    view?.showToast(R.string.error_sdk_unknown)
                 })
 
     }
