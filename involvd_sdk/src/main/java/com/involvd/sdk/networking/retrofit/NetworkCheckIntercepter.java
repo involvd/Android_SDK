@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import com.involvd.R;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 
 import okhttp3.Response;
 
@@ -27,7 +28,14 @@ public class NetworkCheckIntercepter implements okhttp3.Interceptor {
         if (!hasNetworkConnection(getContext())) {
             throw new ApiClient.ApiException(R.string.error_network_error);
         } else {
-            return chain.proceed(chain.request());
+            try {
+                return chain.proceed(chain.request());
+            } catch (Exception e) {
+                if(e instanceof UnknownHostException)
+                    throw new ApiClient.ApiException(R.string.error_network_error);
+                else
+                    throw e;
+            }
         }
     }
 

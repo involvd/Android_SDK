@@ -1,7 +1,6 @@
 package com.involvd.sdk.ui.create_bug_report
 
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.TextInputLayout
 import android.text.method.KeyListener
 import android.view.Gravity
@@ -9,8 +8,6 @@ import android.view.View
 import android.widget.EditText
 import com.involvd.R
 import com.involvd.sdk.data.models.BaseReport
-import com.involvd.sdk.ui.create_bug_report.BaseReportFragment
-import com.involvd.sdk.ui.create_bug_report.BaseReportPresenter
 import kotlinx.android.synthetic.main.involvd_fragment_create_report.*
 import kotlinx.android.synthetic.main.involvd_fragment_view_report.*
 
@@ -21,17 +18,17 @@ abstract class BaseEditReportFragment<T : BaseReport, V : BaseEditReportView<T>,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews(view)
+        initViews()
         getPresenter().load(activity!!, arguments)
     }
 
-    private fun initViews(view: View) {
+    private fun initViews() {
         titleKeyListener = title.keyListener
         descriptionKeyListener = description.keyListener
+//        title.setLines(Integer.MAX_VALUE)
         description.gravity = Gravity.LEFT or Gravity.TOP
-        description.setLines(1)
+//        description.setLines(Integer.MAX_VALUE)
         setEditable(false)
-        cancel_btn.setOnClickListener { activity?.finish() }
     }
 
     private fun toggleEditable(et: EditText, hint: TextInputLayout, keyListener: KeyListener, isEditable: Boolean) {

@@ -16,6 +16,7 @@ public abstract class BaseDialogActivity extends BaseMvpActivity {
         Bundle bundle = getIntent() != null && getIntent().getExtras() != null ? getIntent().getExtras() : new Bundle();
         Fragment fragment = Fragment.instantiate(this, getFragmentName(), bundle);
         pushFragment(fragment, false);
+        findViewById(R.id.cancel_btn).setOnClickListener(v -> finish());
     }
 
     @Override
