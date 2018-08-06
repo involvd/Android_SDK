@@ -34,8 +34,29 @@
     @retrofit2.http.* <methods>;
 }
 
+-keep class android.support.design.** { *; }
+-keep class org.w3c.dom.bootstrap.** { *; }
+-keep class org.conscrypt.** { *; }
+-keep class okio.** { *; }
+-keep class android.databinding.** { *; }
+-keep class java.lang.invoke.LambdaMetafactory { *; }
+-keepnames class com.fasterxml.jackson.** { *; }
+-keep class org.codehaus.** { *; }
+-keepclassmembers public final enum org.codehaus.jackson.annotate.JsonAutoDetect$Visibility {
+    public static final org.codehaus.jackson.annotate.JsonAutoDetect$Visibility *; }
+-keep public class com.involvd.sdk.data.models.** {
+    public void set*(***);
+    public *** get*();
+}
+
+-dontwarn com.fasterxml.jackson.databind.**
 # Ignore annotation used for build tooling.
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
-
 # Ignore JSR 305 annotations for embedding nullability information.
 -dontwarn javax.annotation.**
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn org.conscrypt.**
+-dontwarn java.lang.invoke.**
+-dontwarn com.involvd.sdk.ui.**
+-dontnote

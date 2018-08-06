@@ -15,7 +15,7 @@ abstract class BaseCreatePresenter<T : BaseReport, V : BaseReportView>(val conte
         val apiKey = SdkUtils.getApiKeyForPackage(context, context.packageName)
         val sigHash = SdkUtils.getCertificateSHA1Fingerprint(context, context.packageName)
         if(!TextUtils.isEmpty(userIdentifier))
-            report.submittedBy = "__" + SdkUtils.hashString("MD5", userIdentifier!!)
+            report.submittedBy = "__" + userIdentifier!!
         return getApiCall(apiKey, sigHash, report)
     }
 

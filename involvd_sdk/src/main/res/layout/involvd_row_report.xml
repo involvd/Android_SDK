@@ -25,7 +25,7 @@
             android:gravity="center_vertical"
             android:background="?attr/selectableItemBackground" >
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/voteUpBtn"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
 
             </RelativeLayout>
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/voteDownBtn"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"

@@ -77,7 +77,8 @@ open class SdkUtils {
                 val publicKey = md.digest(c!!.getEncoded())
                 val hexString = byte2HexFormatted(publicKey)
 
-                return hashString("MD5", hexString)
+                return hexString
+//                return hashString("MD5", hexString)
             } catch (e: Exception) {
                 e.printStackTrace()
                 return null

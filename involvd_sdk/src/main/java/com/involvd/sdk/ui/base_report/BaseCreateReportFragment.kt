@@ -44,7 +44,6 @@ abstract open class BaseCreateReportFragment<T : BaseReport, V : BaseReportView,
         if(!wasDialogShown && TextUtils.isEmpty(getPresenter().userIdentifier)) {
             val v = layoutInflater.inflate(R.layout.involvd_dialog_edittext, null)
             val editText = v.edittext
-            editText.setText(PrefManager.getUniqueId(activity!!))
             val listener = DialogInterface.OnClickListener { dialog, which ->
                 wasDialogShown = true
                 getPresenter().setAndCacheUserIdentifier(editText.text.toString().trim())
@@ -67,6 +66,9 @@ abstract open class BaseCreateReportFragment<T : BaseReport, V : BaseReportView,
                     positiveBtn.isEnabled = !TextUtils.isEmpty(s?.trim()) && Patterns.EMAIL_ADDRESS.matcher(s!!.trim()).matches()
                 }
             })
+            val uniqueIdentifier = PrefManager.getUniqueId(activity!!)
+            if(!TextUtils.isEmpty(uniqueIdentifier) && Patterns.EMAIL_ADDRESS.matcher(uniqueIdentifier).matches())
+                editText.setText(uniqueIdentifier)
             return false
         }
         return true

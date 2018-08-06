@@ -9,10 +9,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.involvd.R;
 import com.involvd.sdk.data.models.BugReport;
+import com.involvd.sdk.ui.BaseDialogActivity;
 import com.involvd.sdk.ui.create_bug_report.CreateBugReportActivity;
 import com.involvd.sdk.ui.create_bug_report.ViewBugReportFragment;
 
-public class ViewBugReportActivity extends CreateBugReportActivity {
+public class ViewBugReportActivity extends BaseDialogActivity {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
