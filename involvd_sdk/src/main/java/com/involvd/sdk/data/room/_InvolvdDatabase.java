@@ -17,7 +17,7 @@ import com.involvd.sdk.data.models.FeatureVote;
 
 @TypeConverters({Converters.class})
 @Database(entities = { BugReport.class, FeatureRequest.class, Attachment.class, FeatureVote.class, BugVote.class }, version = 1, exportSchema = false)
-public abstract class AppDatabase extends RoomDatabase {
+public abstract class _InvolvdDatabase extends RoomDatabase {
 
     public static final int VALUE_FALSE = 0;
     public static final int VALUE_TRUE = 1;

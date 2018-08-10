@@ -4,7 +4,7 @@ import android.arch.persistence.room.Room
 import android.content.Context
 import com.involvd.BuildConfig
 import com.involvd.sdk.data.models.*
-import com.involvd.sdk.data.room.AppDatabase
+import com.involvd.sdk.data.room._InvolvdDatabase
 import com.involvd.sdk.data.viewmodels.BugReportViewModel
 import com.involvd.sdk.data.viewmodels.FeatureRequestViewModel
 import com.robj.radicallyreusable.base.components.Optional
@@ -22,11 +22,11 @@ class DatabaseManager {
     companion object {
 
         private val TAG = DatabaseManager::class.java.simpleName
-        private var database: AppDatabase? = null
+        private var database: _InvolvdDatabase? = null
 
-        fun getDatabase(context: Context): AppDatabase {
+        fun getDatabase(context: Context): _InvolvdDatabase {
             if(database == null) {
-                val builder = Room.databaseBuilder(context, AppDatabase::class.java, BuildConfig.APPLICATION_ID)
+                val builder = Room.databaseBuilder(context, _InvolvdDatabase::class.java, BuildConfig.APPLICATION_ID)
                 if (BuildConfig.DEBUG && BuildConfig.VERSION_CODE == 1)
                     builder.fallbackToDestructiveMigration()
                 database = builder.build()
