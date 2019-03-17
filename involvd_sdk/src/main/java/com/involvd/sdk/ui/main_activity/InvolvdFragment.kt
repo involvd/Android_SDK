@@ -2,7 +2,7 @@ package com.involvd.sdk.ui.app
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.ViewPager
 import android.view.View
 import com.involvd.R
 import com.involvd.sdk.data.PrefManager
@@ -71,7 +71,7 @@ class InvolvdFragment : BaseMvpFragment<BaseMvpView, BaseMvpPresenter<BaseMvpVie
     private fun initViewPager() {
         viewPagerAdapter = AppPagerAdapter(activity, childFragmentManager, userIdentifier)
         view_pager.adapter = viewPagerAdapter
-        view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        view_pager.addOnPageChangeListener(object : androidx.viewpager.widget.ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
             override fun onPageSelected(position: Int) {}
             override fun onPageScrollStateChanged(state: Int) {}

@@ -3,7 +3,7 @@ package com.involvd.sdk.ui.create_bug_report
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.TextInputLayout
+import com.google.android.material.textfield.TextInputLayout
 import android.view.View
 import com.involvd.BuildConfig
 import com.involvd.R

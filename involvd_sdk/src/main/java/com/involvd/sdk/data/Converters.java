@@ -1,6 +1,6 @@
 package com.involvd.sdk.data;
 
-import android.arch.persistence.room.TypeConverter;
+import androidx.room.TypeConverter;
 import android.text.TextUtils;
 
 import com.involvd.sdk.data.models.AppVersion;

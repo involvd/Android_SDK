@@ -3,12 +3,11 @@ package com.involvd.sdk.ui.feature_request_list;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.involvd.sdk.ui.BaseMvpActivity;
 import com.involvd.sdk.ui.base_report.BaseCreateReportFragment;
-import com.involvd.sdk.ui.bug_list.BugReportListActivity;
 import com.involvd.sdk.ui.bug_list.FeatureRequestListFragment;
 
 public class FeatureRequestListActivity extends BaseMvpActivity {

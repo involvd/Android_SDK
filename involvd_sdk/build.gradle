@@ -1,13 +1,3 @@
-buildscript {
-    ext.kotlin_version = '1.2.60'
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -16,15 +6,14 @@ apply plugin: 'kotlin-kapt'
 group='com.github.involvd'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
-        versionName "0.1"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionName "0.2"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'involvd-proguard-rules.pro'
     }
     android.defaultConfig.javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
@@ -36,9 +25,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     flavorDimensions "default"
-    aaptOptions {
-        additionalParameters '--utf16'
-    }
     kapt {
         generateStubs = true
     }
@@ -50,32 +36,35 @@ android {
 }
 
 ext {
-    supportLibraryVersion = '27.1.1'
-    room = "1.1.1"
+    supportLibraryVersion = '1.0.0-beta01'
+    room = '2.0.0-beta01'
     retrofit = "2.4.0"
     okhttp = "3.9.1"
 }
 
 dependencies {
-    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
-    implementation "com.android.support:recyclerview-v7:$supportLibraryVersion"
-    implementation "com.android.support:support-vector-drawable:$supportLibraryVersion"
-    implementation "com.android.support:design:$supportLibraryVersion"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    implementation "com.android.support:cardview-v7:$supportLibraryVersion"
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    implementation 'com.github.iamrobj:Radically-Reusable:0.5'
+    implementation "androidx.appcompat:appcompat:$supportLibraryVersion"
+    implementation "androidx.recyclerview:recyclerview:$supportLibraryVersion"
+    implementation "androidx.vectordrawable:vectordrawable:$supportLibraryVersion"
+    implementation "com.google.android.material:material:$supportLibraryVersion"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation "androidx.cardview:cardview:$supportLibraryVersion"
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.14'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'com.github.iamrobj:Radically-Reusable:0.6'
     //Retrofit
-    compile "com.squareup.okhttp3:okhttp:$okhttp"
-    compile "com.squareup.okhttp3:logging-interceptor:$okhttp"
-    compile "com.squareup.retrofit2:retrofit:$retrofit"
-    compile "com.squareup.retrofit2:converter-jackson:$retrofit"
-    compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-jackson:$retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //
-    implementation "android.arch.persistence.room:runtime:$room"
-    implementation "android.arch.persistence.room:rxjava2:$room"
-    annotationProcessor "android.arch.persistence.room:compiler:$room"
-    kapt "android.arch.persistence.room:compiler:$room"
+    implementation "androidx.room:room-runtime:$room"
+    implementation "androidx.room:room-rxjava2:$room"
+    annotationProcessor "androidx.room:room-compiler:$room"
+    kapt "androidx.room:room-compiler:$room"
+    //
+    implementation 'com.hannesdorfmann.mosby:mvp:2.0.1'
+    implementation 'com.hannesdorfmann.mosby:viewstate:2.0.1'
 }

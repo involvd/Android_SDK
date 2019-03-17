@@ -1,7 +1,7 @@
 package com.involvd.sdk.data.models
 
-import android.arch.persistence.room.Entity
-import android.support.annotation.NonNull
+import androidx.room.Entity
+import androidx.annotation.NonNull
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.involvd.sdk.data.Converters

@@ -5,11 +5,11 @@
 
     <data>
         <variable name="viewModel" type="com.involvd.sdk.ui.base_list.BaseReportAdapter.BaseReportViewModel" />
-        <import type="android.support.v4.content.ContextCompat" />
+        <import type="androidx.core.content.ContextCompat" />
         <import type="android.view.View" />
     </data>
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
@@ -17,7 +17,7 @@
         android:layout_marginTop="5dp"
         app:cardCornerRadius="4dp" >
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -25,7 +25,7 @@
             android:gravity="center_vertical"
             android:background="?attr/selectableItemBackground" >
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/voteUpBtn"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
 
             </RelativeLayout>
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/voteDownBtn"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
@@ -170,8 +170,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 tools:text="Status" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </layout>

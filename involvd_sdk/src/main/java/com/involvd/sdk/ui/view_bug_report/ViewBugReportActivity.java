@@ -3,14 +3,13 @@ package com.involvd.sdk.ui.view_bug_report;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.involvd.R;
 import com.involvd.sdk.data.models.BugReport;
 import com.involvd.sdk.ui.BaseDialogActivity;
-import com.involvd.sdk.ui.create_bug_report.CreateBugReportActivity;
 import com.involvd.sdk.ui.create_bug_report.ViewBugReportFragment;
 
 public class ViewBugReportActivity extends BaseDialogActivity {

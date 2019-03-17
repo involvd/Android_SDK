@@ -1,6 +1,6 @@
 package com.involvd.sdk.data.models
 
-import android.arch.persistence.room.Entity
+import androidx.room.Entity
 
 /**
  * Created by jj on 05/02/18.

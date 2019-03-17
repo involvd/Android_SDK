@@ -1,6 +1,6 @@
 package com.involvd.sdk.data;
 
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import android.content.Context
 import com.involvd.BuildConfig
 import com.involvd.sdk.data.models.*

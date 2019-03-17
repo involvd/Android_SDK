@@ -1,6 +1,6 @@
 package com.involvd.sdk.data.models
 
-import android.support.annotation.NonNull
+import androidx.annotation.NonNull
 
 /**
  * Created by jj on 05/02/18.

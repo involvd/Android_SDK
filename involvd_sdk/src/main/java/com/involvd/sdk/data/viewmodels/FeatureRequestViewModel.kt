@@ -1,6 +1,6 @@
 package com.involvd.sdk.data.viewmodels
 
-import android.arch.persistence.room.Relation
+import androidx.room.Relation
 import com.involvd.sdk.data.models.*
 
 class FeatureRequestViewModel : FeatureRequest() {

@@ -1,7 +1,7 @@
 package com.involvd.sdk.ui.base_list;
 
 import android.content.Context
-import android.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
